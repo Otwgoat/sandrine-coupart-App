@@ -40,7 +40,7 @@ class RecipeController extends AbstractController
             if ($user) {
                 $recipesList = $recipeRepository->findAllWithPagination($limit, $page);
             } else {
-                $recipesList = $recipeRepository->findByAuth($limit, $page);
+                $recipesList = $recipeRepository->findAllWithPaginationWithoutAuth($limit, $page);
             }
             return $serializer->serialize($recipesList, 'json', ['groups' => 'getRecipes']);
         });

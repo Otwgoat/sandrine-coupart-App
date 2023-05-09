@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\RecipeRepository;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
 class Recipe
@@ -15,33 +16,43 @@ class Recipe
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups('getRecipes')]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('getRecipes')]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups('getRecipes')]
     private ?string $description = null;
 
     #[ORM\Column]
+    #[Groups('getRecipes')]
     private ?int $prepTime = null;
 
     #[ORM\Column]
+    #[Groups('getRecipes')]
     private ?int $cookTime = null;
 
     #[ORM\Column]
+    #[Groups('getRecipes')]
     private ?int $restTime = null;
 
     #[ORM\Column]
+    #[Groups('getRecipes')]
     private array $ingredients = [];
 
     #[ORM\Column]
+    #[Groups('getRecipes')]
     private array $allergens = [];
 
     #[ORM\Column]
+    #[Groups('getRecipes')]
     private array $diets = [];
 
     #[ORM\Column]
+    #[Groups('getRecipes')]
     private ?bool $requireAuth = null;
 
     #[ORM\Column]
