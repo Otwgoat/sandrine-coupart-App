@@ -1,5 +1,8 @@
 import axios from "axios";
 import jwtDecode from "jwt-decode";
+import apiPath from "./connectAPI";
+import { useContext, useState } from "react";
+import AuthContext from "../contexts/AuthContext";
 
 
 
@@ -7,9 +10,10 @@ import jwtDecode from "jwt-decode";
 // set the default Authorization header for axios
 function authenticate(credentials) {
     return axios
-        .post("http://localhost:8000/api/login_check", credentials)
+        .post(apiPath("login_check"), credentials)
         .then((response) => {
             return response.data.token;
+            
         })
         .then(token => {
             // stockage du token généré par l'API dans le localStorage.
@@ -19,6 +23,8 @@ function authenticate(credentials) {
 
             return true
         });
+        
+         
 }
 
 
@@ -48,7 +54,7 @@ function setup () {
         logout();
     }
 };    
-    
+
 function isAuthenticated() {
     const token = window.localStorage.getItem("authToken");
     if(token){
@@ -56,12 +62,26 @@ function isAuthenticated() {
         if((jwtData.exp * 1000) > new Date().getTime()){
            return true;
         } else {
-            return false;
+        return false;
         }   
     }
     return false;
 
 }    
+function isAdmin(){
+    const token = window.localStorage.getItem("authToken");
+    if(token){
+        const jwtData = jwtDecode(token);
+        console.log(jwtData.roles[0])
+        if((jwtData.roles[0]) === "ROLE_ADMIN"){
+            return true;
+        } else {
+            return false;
+        }   
+    }
+    return false;
+
+}
 
  
 
@@ -69,5 +89,6 @@ export default {
     authenticate,
     logout,
     setup,
-    isAuthenticated
+    isAuthenticated,
+    isAdmin
 };

@@ -9,38 +9,48 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\RecipeRepository;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
 class Recipe
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(unique: true)]
     #[Groups('getRecipes')]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
     #[Groups('getRecipes')]
+    #[Assert\NotBlank(message: "Le titre de la recette doit être renseigné.")]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Groups('getRecipes')]
+    #[Assert\NotBlank(message: "La description de la recette doit être renseigné.")]
     private ?string $description = null;
 
     #[ORM\Column]
     #[Groups('getRecipes')]
+    #[Assert\NotBlank(message: "Le temps de préparation de la recette doit être renseigné.")]
+    #[Assert\PositiveOrZero(message: "Le temps de préparation doit etre un nombre égal à 0 ou supérieur.")]
     private ?int $prepTime = null;
 
     #[ORM\Column]
     #[Groups('getRecipes')]
+    #[Assert\NotBlank(message: "Le temps de cuisson de la recette doit être renseigné.")]
+    #[Assert\PositiveOrZero(message: "Le temps de cuisson doit etre un nombre égal à 0 ou supérieur.")]
     private ?int $cookTime = null;
 
     #[ORM\Column]
     #[Groups('getRecipes')]
+    #[Assert\NotBlank(message: "La temps de repos de la recette doit être renseigné.")]
+    #[Assert\PositiveOrZero(message: "Le temps de repos doit etre un nombre égal à 0 ou supérieur.")]
     private ?int $restTime = null;
 
     #[ORM\Column]
     #[Groups('getRecipes')]
+    #[Assert\NotBlank(message: "Au moins un ingrédient doit être renseigné.")]
     private array $ingredients = [];
 
     #[ORM\Column]
@@ -49,6 +59,7 @@ class Recipe
 
     #[ORM\Column]
     #[Groups('getRecipes')]
+    #[Assert\NotBlank(message: "Au moins un régime doit être renseigné.")]
     private array $diets = [];
 
     #[ORM\Column]
@@ -56,15 +67,27 @@ class Recipe
     private ?bool $requireAuth = null;
 
     #[ORM\Column]
+    #[Groups('getRecipes')]
+    #[Assert\NotBlank(message: "Au moins une étape doit être renseigné.")]
     private array $steps = [];
 
-    #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: RateReview::class, orphanRemoval: true)]
-    private Collection $rateReviews;
+
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imageUrl = null;
+
+    #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: RateReview::class, orphanRemoval: true, cascade: ['persist'])]
+    #[Groups('getRecipes')]
+    private Collection $reviews;
 
     public function __construct()
     {
-        $this->rateReviews = new ArrayCollection();
+        $this->reviews = new ArrayCollection();
     }
+
+
+
+
 
     public function getId(): ?int
     {
@@ -191,30 +214,47 @@ class Recipe
         return $this;
     }
 
+
+    public function getImageUrl(): ?string
+    {
+        return $this->imageUrl;
+    }
+
+    public function setImageUrl(?string $imageUrl): self
+    {
+        $this->imageUrl = $imageUrl;
+
+        return $this;
+    }
+    public function __toString()
+    {
+        return $this->getId(); // Retourne l'identifiant de l'entité
+    }
+
     /**
      * @return Collection<int, RateReview>
      */
-    public function getRateReviews(): Collection
+    public function getReviews(): Collection
     {
-        return $this->rateReviews;
+        return $this->reviews;
     }
 
-    public function addRateReview(RateReview $rateReview): self
+    public function addReview(RateReview $review): self
     {
-        if (!$this->rateReviews->contains($rateReview)) {
-            $this->rateReviews->add($rateReview);
-            $rateReview->setRecipe($this);
+        if (!$this->reviews->contains($review)) {
+            $this->reviews->add($review);
+            $review->setRecipe($this);
         }
 
         return $this;
     }
 
-    public function removeRateReview(RateReview $rateReview): self
+    public function removeReview(RateReview $review): self
     {
-        if ($this->rateReviews->removeElement($rateReview)) {
+        if ($this->reviews->removeElement($review)) {
             // set the owning side to null (unless already changed)
-            if ($rateReview->getRecipe() === $this) {
-                $rateReview->setRecipe(null);
+            if ($review->getRecipe() === $this) {
+                $review->setRecipe(null);
             }
         }
 

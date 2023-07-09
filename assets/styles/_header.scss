@@ -1,0 +1,157 @@
+header {
+    background-color: white;
+    height: 8vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+
+
+    .pageTitle {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 80%;
+        margin-left: 1rem;
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: black;
+            font-size: 24px;
+        }
+    }
+   .hamburgerMenu {
+        margin-right: 1rem;
+        height: 100%;
+        width: 20%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        #hamburgerBars {
+            height: 100%;
+            width: 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .toggleBar {
+                content: ' ';
+                color: black;
+                width: 100%;
+                height: 1.5px;
+                background-color: black;
+                margin: 5px 0px;
+            }
+        }
+        .hamburgerBarsActive {
+            position: absolute;
+            top: 2rem;
+            right: 1rem;
+            display: block;
+            cursor: pointer;
+            width: 25px;
+            height: 25px;
+            z-index: 10;
+            .toggleBarActive{
+                content: '';
+                color: white;
+                width: 100%;
+                height: 1.5px;
+                background-color: white;
+                
+                
+    
+            }
+            #bar1 {
+                display: block;
+                transform: rotate(45deg);
+                position: absolute;
+                top: 1px;
+                
+                
+                
+            }
+            #bar2 {
+                display: block;
+                transform: rotate(-45deg);
+                position: absolute;
+                top: 1px;
+            }
+            #bar3 {
+                display: none;
+            }
+
+        }
+    }
+    .navMenu {
+        display: none;
+    }
+    .navMenuActive {
+        width: 100%;
+        height: 50vh;
+        background-color: #3E5378;
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        
+
+    }
+    .menuHeader {
+        max-width: 100%;
+        height: 8vh;
+        margin-left: 1rem;
+        margin-top: 1rem;
+        align-items: center;
+    }
+    .menuBody {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        height: 50%;
+        max-width: 100%;
+        margin-left: 1rem;
+
+        .menuLinkActive {
+        text-decoration: underline;
+        font-family: 'Playfair Display', serif;
+        color: white;
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        }
+       
+    }
+    .menuLink {
+        text-decoration: none;
+        font-family: 'Playfair Display', serif;
+        color: white;
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: 1rem;
+    }
+
+    .menuFooter {
+        width: 100%;
+        height: 20%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        padding-bottom: 1rem;
+
+        .menuIcon {
+            text-decoration: none;
+            color: white;
+            font-size: 24px;
+            margin: 0 1rem;
+        }
+
+    }
+    
+}   

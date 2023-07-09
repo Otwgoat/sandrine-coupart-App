@@ -1,0 +1,27 @@
+#recipesPage {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    .mainBanner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 90%;
+        #mainTitle , #mainIntro {
+            text-align: center;
+            width: 100%;
+        }
+    }
+    #recipesContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin: 2rem 0;
+        
+    }
+
+    
+}

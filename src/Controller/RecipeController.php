@@ -27,8 +27,10 @@ class RecipeController extends AbstractController
     public function getAllRecipes(RecipeRepository $recipeRepository, SerializerInterface $serializer, Security $security, Request $request, TagAwareCacheInterface $cache): JsonResponse
     {
         $user = $security->getUser();
+
         $page = $request->get('page', 1);
         $limit = $request->get('limit', 10);
+
 
 
         $idCache = "recipes_list_$page-$limit";
@@ -36,8 +38,9 @@ class RecipeController extends AbstractController
         $jsonRecipesList = $cache->get($idCache, function (ItemInterface $item) use ($recipeRepository, $user, $limit, $page, $serializer) {
             $item->tag("recipesCache");
             $item->expiresAfter(1800);
-
-            if ($user) {
+            if ($limit > 10) {
+                $recipesList = $recipeRepository->findAllWithoutPagination();
+            } else if ($user) {
                 $recipesList = $recipeRepository->findAllWithPagination($limit, $page);
             } else {
                 $recipesList = $recipeRepository->findAllWithPaginationWithoutAuth($limit, $page);
@@ -54,7 +57,7 @@ class RecipeController extends AbstractController
     #[Route('api/recettes/{id}', name: 'detailRecipe', methods: ['GET'])]
     public function getDetailRecipe(Recipe $recipe, SerializerInterface $serializer): JsonResponse
     {
-        $jsonRecipe = $serializer->serialize($recipe, 'json', ['groups' => 'getOneRecipe']);
+        $jsonRecipe = $serializer->serialize($recipe, 'json', ['groups' => 'getRecipes']);
         return new JsonResponse($jsonRecipe, Response::HTTP_OK, ['accept' => 'json'], true);
     }
 
@@ -69,7 +72,7 @@ class RecipeController extends AbstractController
     }
 
     #[Route('api/recettes', name: 'createRecipe', methods: ['POST'])]
-    #[IsGranted('ROLE_ADMIN', message: 'Vous ne pouvez pas supprimer une recette si vous n\'êtes pas administrateur.')]
+    #[IsGranted('ROLE_ADMIN', message: 'Vous ne pouvez pas créer une recette si vous n\'êtes pas administrateur.')]
     public function createRecipe(Request $request, SerializerInterface $serializer, EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator, ValidatorInterface $validator): JsonResponse
     {
         $recipe = $serializer->deserialize($request->getContent(), Recipe::class, 'json');

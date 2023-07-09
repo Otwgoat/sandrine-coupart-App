@@ -1,0 +1,171 @@
+.adminMain {
+    max-width: 390px;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    #adminPageCTAs {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+    }
+    .modal {
+        background-color: aqua;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 90vh;
+        z-index: 10;
+    }
+    #userProfile {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        p {
+            margin: 1rem 0;
+            width: 100%;
+        }
+        .buttons {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    #recipeIndex {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        p {
+            margin: 1rem 0;
+            width: 100%;
+        }
+        .buttons {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+    } 
+   
+    .adminList {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        input {
+            margin-top: 0.5rem;
+            width: 100%;
+            border-radius: 5px;
+            height: 20px;
+            box-shadow: none;
+            border: solid 1px #68B0AB;
+            
+        }
+        .adminListItem {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 5vh;
+            border-bottom: 1px solid black;
+
+            p{
+                text-align: start;
+            }
+        }
+        
+    }
+    .form {
+        display: none;
+    }
+    .formActive {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .formGroup {
+            width: 90%;
+            display: flex;
+            margin-bottom: 1rem;
+            flex-direction: column;
+            align-items: center;
+
+            textarea {
+                margin-top: 0.5rem;
+                width: 100%;
+            }
+            label {
+                width: 100%;
+                text-align: start;
+                
+                
+            }
+            input {
+                margin-top: 0.5rem;
+                width: 100%;
+            }
+            .formList {
+                width: 100%;
+                
+                display: flex;
+                margin-top: 0.5rem;
+                flex-direction: column;
+                align-items: center;
+
+                .formItem {
+                    margin-top: 0.5rem ;
+                    display: flex;
+                    justify-content: space-between;
+                    width: 50%;
+                    background-color: red;
+                }
+                
+            }
+            .withCtaGroup {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                input {
+                    width: 100%;
+                    margin-top: 0.5rem;
+                }
+                button {
+                    margin-top: 1rem;
+                    width: 50%;
+                }
+                textarea {
+                    width: 100%;
+                    margin-top: 0.5rem;
+                }
+            }
+
+        }
+        .withCheckbox {
+            display: flex;
+            flex-direction: row;
+            width: 90%;
+            justify-content: space-between;
+            label {
+                flex: 2;
+            }
+            input {
+                display: flex;
+                flex: 1;
+                justify-content: end;
+            }
+            
+
+        }
+    }
+}

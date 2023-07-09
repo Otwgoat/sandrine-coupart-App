@@ -79,12 +79,12 @@ class AppFixtures extends Fixture
         $recipes = $this->recipeRepository->findAll();
         foreach ($recipes as $recipe) {
             for ($p = 1; $p < 31; $p++) {
-                $recipeRate = new RateReview();
+
                 $recipeRate->setRate($faker->randomFloat(1, 0, 10))
                     ->setReview($faker->text())
                     ->setUser($patients[$p])
                     ->setRecipe($recipe);
-                $manager->persist($recipeRate);
+                $manager->persist();
             }
         }
         $manager->flush();

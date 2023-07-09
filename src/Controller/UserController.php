@@ -14,6 +14,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class UserController extends AbstractController
@@ -28,10 +29,10 @@ class UserController extends AbstractController
     }
 
     #[Route('api/utilisateurs/{id}', name: 'detailUser', methods: ['GET'])]
-
     public function getOneUser(SerializerInterface $serializer, User $user): JsonResponse
     {
-        $jsonUser = $serializer->serialize($user, 'json', ['groups' => 'getOneUser']);
+
+        $jsonUser = $serializer->serialize($user, 'json', ['groups' => 'getUsers']);
         return new JsonResponse($jsonUser, Response::HTTP_OK, ['accept' => 'json'], true);
     }
 
@@ -46,9 +47,11 @@ class UserController extends AbstractController
 
     #[Route('api/utilisateurs', name: 'createUser', methods: ['POST'])]
     #[IsGranted('ROLE_ADMIN', message: 'Vous ne pouvez pas accéder à la liste des utilisateurs si vous n\'êtes pas administrateur.')]
-    public function createUser(Request $request, SerializerInterface $serializer, EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator, ValidatorInterface $validator): JsonResponse
+    public function createUser(Request $request, SerializerInterface $serializer, EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator, ValidatorInterface $validator, UserPasswordHasherInterface $encoder): JsonResponse
     {
         $user = $serializer->deserialize($request->getContent(), User::class, 'json');
+        $hashedPassword = $encoder->hashPassword($user, $user->getPassword());
+        $user->setPassword($hashedPassword);
 
         $errors = $validator->validate($user);
 

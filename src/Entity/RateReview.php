@@ -3,8 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RateReviewRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: RateReviewRepository::class)]
 class RateReview
@@ -15,17 +15,20 @@ class RateReview
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Groups(['getReviews', 'getRecipes'])]
     private ?float $rate = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(length: 255)]
+    #[Groups(['getReviews'])]
     private ?string $review = null;
 
-    #[ORM\ManyToOne(inversedBy: 'rateReviews')]
+    #[ORM\ManyToOne(inversedBy: 'reviews', cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Recipe $recipe = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(inversedBy: 'reviews', cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['getReviews'])]
     private ?User $user = null;
 
     public function getId(): ?int

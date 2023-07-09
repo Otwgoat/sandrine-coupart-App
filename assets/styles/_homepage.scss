@@ -1,0 +1,68 @@
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    #topOfPage {
+        width: 100%;
+        height: 90vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        #topOfPageImg {
+            width: 100%;
+            height: 370px;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        #topOfPagePresentation {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-top: 1rem;
+
+
+            
+        }
+        #topOfPageCTA {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 1rem;
+            
+
+        }
+       
+        
+    }
+    #dailyRecipeContainer {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+
+        #recipeCard {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            #recipeHeader {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+
+
+    }
+
+}

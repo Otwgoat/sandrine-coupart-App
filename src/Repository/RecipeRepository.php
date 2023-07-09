@@ -56,9 +56,13 @@ class RecipeRepository extends ServiceEntityRepository
     /**
      * @return Recipe[] Returns an array of Recipe objects
      */
+    // find all recipes with pagination
+
     public function findAllWithPagination($limit, $page): array
     {
+
         return $this->createQueryBuilder('r')
+
             ->orderBy('r.id', 'ASC')
             ->setFirstResult(($page - 1) * $limit)
             ->setMaxResults($limit)
@@ -66,13 +70,11 @@ class RecipeRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    //    public function findOneBySomeField($value): ?Recipe
-    //    {
-    //        return $this->createQueryBuilder('r')
-    //            ->andWhere('r.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    public function findAllWithoutPagination(): array
+    {
+        return $this->createQueryBuilder('r')
+            ->orderBy('r.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }

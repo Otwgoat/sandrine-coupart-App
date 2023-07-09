@@ -1,0 +1,37 @@
+#loginPage {
+    display: flex;
+    height: 90vh;
+    justify-content: center;
+    align-items: center;
+    
+    form {
+        display: flex;
+        width: 90%;
+        flex-direction: column;
+        align-items: center;
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            align-items: center;
+            margin: 1rem 0;
+            
+            label , a{
+                margin: 0.5rem 0;
+            }
+            input {
+                border: none;
+                width: 90%;
+                height: 3vh;
+                background-color: none;
+                border-bottom:  3px solid #68B0AB;
+                &:focus{
+                    outline: none;
+                }
+                
+            }
+        }
+        
+    }
+}
