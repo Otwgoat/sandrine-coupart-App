@@ -26,7 +26,7 @@ class RecipeController extends AbstractController
     #[Route('/api/recettes', name: 'recipes', methods: ['GET'])]
     public function getAllRecipes(RecipeRepository $recipeRepository, SerializerInterface $serializer, Security $security, Request $request, TagAwareCacheInterface $cache): JsonResponse
     {
-        $user = $security->getUser();
+        
 
         $page = $request->get('page', 1);
         $limit = $request->get('limit', 10);
@@ -35,15 +35,13 @@ class RecipeController extends AbstractController
 
         $idCache = "recipes_list_$page-$limit";
         //This is the cache for the recipes list.
-        $jsonRecipesList = $cache->get($idCache, function (ItemInterface $item) use ($recipeRepository, $user, $limit, $page, $serializer) {
+        $jsonRecipesList = $cache->get($idCache, function (ItemInterface $item) use ($recipeRepository, $limit, $page, $serializer) {
             $item->tag("recipesCache");
             $item->expiresAfter(1800);
             if ($limit > 10) {
                 $recipesList = $recipeRepository->findAllWithoutPagination();
-            } else if ($user) {
-                $recipesList = $recipeRepository->findAllWithPagination($limit, $page);
             } else {
-                $recipesList = $recipeRepository->findAllWithPaginationWithoutAuth($limit, $page);
+                $recipesList = $recipeRepository->findAllWithPagination($limit, $page);
             }
             return $serializer->serialize($recipesList, 'json', ['groups' => 'getRecipes']);
         });

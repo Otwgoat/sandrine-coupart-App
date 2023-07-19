@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import recipesApi from "../../services/recipesApi";
 import Metadescription from "../../components/Metadescription";
 import Header from "../../components/Header";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import RecipePage from "../../components/RecipePage";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 const AdminRecipePage = () => {
   const [recipe, setRecipe] = useState();
@@ -23,46 +26,19 @@ const AdminRecipePage = () => {
     <div className="container">
       <Metadescription />
       <Header title="Fiche de la recette" />
+
       <main className="adminMain">
+        <Link to="/admin/recettes" className="prevLink">
+          <FontAwesomeIcon icon={faArrowLeft} style={{ color: "#3E5378" }} />{" "}
+          Retour à la liste des recettes
+        </Link>
         {recipe && (
-          <div id="recipeIndex">
-            <h2>{recipe.title}</h2>
-            <img src={recipe.img} />
-            <p>{recipe.description}</p>
-            <p>Temps de préparation: {recipe.prepTime} min</p>
-            <p>Temps de cuisson: {recipe.cookTime} min</p>
-            <p>Temps de repos: {recipe.restTime} min</p>
-            <div>
-              <p>Allergènes: </p>
-              {recipe.allergens &&
-                recipe.allergens.map((item, index) => (
-                  <p key={index}>{item}</p>
-                ))}
-            </div>
-            <div>
-              <p>Ingrédients: </p>
-              {recipe.ingredients &&
-                recipe.ingredients.map((item, index) => (
-                  <p key={index}>{item}</p>
-                ))}
-            </div>
-            <div>
-              <p>Régime(s): </p>
-              {recipe.diets &&
-                recipe.diets.map((item, index) => <p key={index}>{item}</p>)}
-            </div>
-            <div>
-              <p>Étapes: </p>
-              {recipe.steps &&
-                recipe.steps.map((item, index) => (
-                  <p key={index}>
-                    {index + 1 + "."} {item}
-                  </p>
-                ))}
-            </div>
+          <div id="recipePage">
+            <h3>{recipe.title}</h3>
+            <RecipePage recipe={recipe} />
             <div className="buttons">
               <button className="ctaButton" onClick={handleDelete}>
-                Supprimer
+                Supprimer la recette
               </button>
             </div>
           </div>

@@ -4,6 +4,9 @@ import Header from "../../components/Header";
 import UserForm from "../../components/UserForm";
 import usersApi from "../../services/usersApi";
 import Button from "../../components/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const AdminUsers = () => {
   const [users, setUsers] = useState([]);
@@ -28,24 +31,27 @@ const AdminUsers = () => {
   return (
     <div className="container">
       <Metadescription />
-      <Header title="Gérer les utilisateurs" />
+      <Header title="Gérer les patients" />
       <main className="adminMain">
+        <Link to="/admin" className="prevLink">
+          <FontAwesomeIcon icon={faArrowLeft} style={{ color: "#3E5378" }} />{" "}
+          Retour à l'écran précédent
+        </Link>
         <button
           className={isVisible ? "ctaButtonActive" : "ctaButton"}
           id="addUserBtn"
           onClick={toggleForm}
         >
-          Ajouter un utilisateur
+          {isVisible ? "Retour à la liste des patients" : "Créer un patient"}
         </button>
         <UserForm isVisible={isVisible} />
         {!isVisible && (
           <div className="adminList">
-            <label htmlFor="searchUser">Chercher un utilisateur</label>
             <input
               type="text"
               id="searchUser"
               name="searchUser"
-              placeholder="Nom de famille"
+              placeholder="Chercher un patient"
               onChange={(e) => searchingUser(e.target.value)}
             />
             {correspondantUsers && correspondantUsers.length >= 1 ? (
@@ -62,7 +68,12 @@ const AdminUsers = () => {
                     </p>
                     <Button
                       path={"/admin/utilisateur/" + user.id}
-                      title="Voir plus"
+                      title={
+                        <FontAwesomeIcon
+                          icon={faArrowRight}
+                          style={{ color: "#68B0AB" }}
+                        />
+                      }
                     />
                   </div>
                 ))
@@ -73,10 +84,16 @@ const AdminUsers = () => {
                     </p>
                     <Button
                       path={"/admin/utilisateur/" + user.id}
-                      title="Voir plus"
+                      title={
+                        <FontAwesomeIcon
+                          icon={faArrowRight}
+                          style={{ color: "#68B0AB" }}
+                        />
+                      }
                     />
                   </div>
                 ))}
+            <Button path={"/admin"} title="Revenir à l'écran précédent" />
           </div>
         )}
       </main>

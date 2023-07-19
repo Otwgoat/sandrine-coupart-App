@@ -6,31 +6,52 @@ const ReviewInput = ({ isVisible, recipeId, userId, updateLastReview }) => {
   const [user, setUser] = useState(userId);
   const [reviewList, setReviewList] = useState([]);
   const [rate, setRate] = useState();
+  const possibleRates = ["", 1, 2, 3, 4, 5];
   const [review, setReview] = useState();
+  const [dateTime, setDateTime] = useState(new Date().toLocaleDateString("fr"));
+  const [errors, setErrors] = useState({
+    rate: "",
+    review: "",
+  });
+  // === Sending Review === //
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     let reviewData = {
       rate: rate,
       review: review,
     };
     console.log(reviewData);
     try {
-      await reviewsApi
-        .createReview(reviewData, recipe.id)
-        .then(updateLastReview(reviewData));
-      console.log("submission succeed");
+      if (reviewData.rate && reviewData.review) {
+        await reviewsApi
+          .createReview(reviewData, recipe.id)
+          .then(updateLastReview(reviewData));
+        console.log("submission succeed");
+      }
     } catch (error) {
       if (error.response && error.response.data) {
-        console.log(error.response);
         const violations = error.response.data.violations;
         console.log(violations);
+        // Check if there's violation(s) and assign them to the properties in error's useState
+        //====================================================================================
+        if (violations) {
+          const apiErrors = {};
+          violations.forEach(({ propertyPath, title }) => {
+            apiErrors[propertyPath] = title;
+          });
+          setErrors(apiErrors);
+        }
       }
     }
   };
 
-  const possibleRates = ["", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   return (
-    <form className={isVisible ? "formActive" : "form"} onSubmit={handleSubmit}>
+    <form
+      id="reviewInput"
+      className={isVisible ? "formActive" : "form"}
+      onSubmit={handleSubmit}
+    >
       <div id="rateGroup">
         <label htmlFor="rate">Note: </label>
         <select onChange={(e) => setRate(Number(e.target.value))}>
@@ -40,6 +61,7 @@ const ReviewInput = ({ isVisible, recipeId, userId, updateLastReview }) => {
             </option>
           ))}
         </select>
+        {errors.rate && <p className="errorMessage">{errors.rate}</p>}
       </div>
 
       <label htmlFor="review">Votre avis: </label>
@@ -49,6 +71,7 @@ const ReviewInput = ({ isVisible, recipeId, userId, updateLastReview }) => {
         id="review"
         placeholder="Ecrivez votre avis..."
       ></textarea>
+      {errors.review && <p className="errorMessage">{errors.review}</p>}
       <button className="ctaButton" type="submit">
         Envoyer
       </button>

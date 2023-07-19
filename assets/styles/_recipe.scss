@@ -1,28 +1,61 @@
 #recipePage {
     width: 100%;
-    .recipeItem {
-        display: flex;
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-        #stepListIndex {
-            font-weight: 600;
-            font-size: 18px;
-            
-        }
-    }
-    .prevLink {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    #discoverReviews {
         padding-top: 1rem;
+        margin-bottom: 1rem;
         width: 90%;
-        color: #3E5378;
+        color: #68B0AB;
+        
         
     }
-    #stepList p {
-        margin-bottom: 0.5rem;
+    img {
+        height: 50vh;
+        width: 100%;
+        background-color: #3E5378;
+        margin-bottom: 1rem;
+        border: solid 1px #68B0AB;
     }
-   
-    .recipeItemTitle {
-        margin: 0.5rem 0.5rem;
+    #recipeDescription {
+        width: 90%;
+        
+    }
+    .recipeSquare {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        
+        .recipeItem {
+            display: flex;
+            width: 40%;
+            margin: 1rem;
+            flex-direction: column;
+            align-items: center;
+            border: solid #68B0AB 1px;
+            border-radius: 15px;
+            padding: 1rem;
+            
+        }
+        
+        #stepList p {
+            margin-bottom: 0.5rem;
+
+        }
+       
+        .recipeItemTitle {
+            margin: 0.5rem 0.5rem;
+            color: #68B0AB;
+        }
+
+    }
+    #secondSquare, #thirdSquare {
+       .recipeItem {
+        width: 80%;
+       }
+       
+       
     }
     .reviewsContainer {
         width: 100%;
@@ -38,12 +71,56 @@
             flex-direction: column;
             align-items: center;
             
+            
             textarea {
                 width: 100%;
                 height: 10vh;
                 margin-bottom: 0.5rem;
+                border: solid #68B0AB 1px;
+                border-radius: 10px;
+
+                &::placeholder {
+                    font-family: 'Playfair Display', serif;
+                    padding-top: 0.5rem;
+                    text-align: left;
+                    
+                }
             }
                 
+            
+        }
+        .reviewSquare {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+            .reviewHeader {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                h3 {
+                    width: 80%;
+                    #reviewCreatedAt {
+                        color: #68B0AB;
+                        font-size: 16px;
+                        margin-left: 0.5rem;
+                    }
+                }
+               
+
+                #reviewRate{
+                    width: 20%;
+                    display:flex;
+                    justify-content: flex-end;
+                }
+                
+            }
+            #review {
+                width: 100%;
+            }
+            
             
         }
     }

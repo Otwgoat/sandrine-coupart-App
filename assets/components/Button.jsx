@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 
 const Button = (props) => {
   return (
-    <button className="ctaButton">
+    <button
+      id={props.id ? props.id : ""}
+      className="ctaButton"
+      onClick={props.onClick}
+    >
       <Link to={props.path}>{props.title}</Link>
     </button>
   );

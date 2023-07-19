@@ -1,9 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
 import recipesApi from "../services/recipesApi";
-import DietGroup from "./adminFormComponents/DietGroup";
 import StepGroup from "./adminFormComponents/StepGroup";
 import Field from "./adminFormComponents/Field";
 import FieldGroup from "./adminFormComponents/FieldGroup";
+import SelectGroup from "./adminFormComponents/SelectGroup";
+import possibleAllergens from "../data/allergens";
+import possibleDiets from "../data/diets";
 
 const RecipeForm = ({ isVisible }) => {
   const formRef = useRef(formRef);
@@ -201,10 +203,11 @@ const RecipeForm = ({ isVisible }) => {
         onChange={(e) => setIngredient(e.target.value)}
         error={errors.ingredients}
       />
-      <FieldGroup
-        name="allergens"
-        label="Allergènes"
-        button="l'allergène"
+      <SelectGroup
+        labelName="allergens"
+        label="Allergène(s)"
+        buttonName="l'allergène"
+        itemList={possibleAllergens}
         value={allergen}
         entries={allergens}
         onClick={handleAddAllergen}
@@ -212,14 +215,19 @@ const RecipeForm = ({ isVisible }) => {
         onChange={(e) => setAllergen(e.target.value)}
         error={errors.allergens}
       />
-
-      <DietGroup
-        diets={diets}
+      <SelectGroup
+        labelName="diets"
+        label="Régime(s) alimentaire"
+        buttonName="le régime"
+        itemList={possibleDiets}
+        value={diet}
         onClick={handleAddDiet}
         spanOnClick={deleteDiet}
         onChange={(e) => setDiet(e.target.value)}
         error={errors.diets}
+        entries={diets}
       />
+
       <StepGroup
         steps={steps}
         value={step}

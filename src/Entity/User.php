@@ -48,6 +48,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(nullable: true)]
     #[Groups('getUsers')]
+    #[Assert\NotBlank(message: "Au moins un allergène doit être renseigné. S'il n'y en a pas, veuillez indiquer 'Aucun'.")]
     public array $allergens = [];
 
     #[ORM\Column(nullable: true)]

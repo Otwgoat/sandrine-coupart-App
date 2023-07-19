@@ -17,7 +17,7 @@ header {
         h1 {
             font-family: 'Playfair Display', serif;
             font-weight: 600;
-            color: black;
+            color: #3E5378;
             font-size: 24px;
         }
     }
@@ -38,10 +38,10 @@ header {
             align-items: center;
             .toggleBar {
                 content: ' ';
-                color: black;
+                color: #3E5378;
                 width: 100%;
                 height: 1.5px;
-                background-color: black;
+                background-color: #3E5378;
                 margin: 5px 0px;
             }
         }
@@ -90,33 +90,25 @@ header {
     }
     .navMenuActive {
         width: 100%;
-        height: 50vh;
+        height: 40vh;
         background-color: #3E5378;
+        border-bottom: 2px solid #68B0AB;
         position: absolute;
         left: 0;
         top: 0;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-
-        
-
     }
-    .menuHeader {
-        max-width: 100%;
-        height: 8vh;
-        margin-left: 1rem;
-        margin-top: 1rem;
-        align-items: center;
-    }
+   
     .menuBody {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        justify-content: center;
-        height: 50%;
+        justify-content: flex-start;
+        height: 70%;
         max-width: 100%;
         margin-left: 1rem;
+        padding-top: 1rem;
 
         .menuLinkActive {
         text-decoration: underline;
@@ -126,7 +118,6 @@ header {
         font-weight: 500;
         margin-bottom: 1rem;
         }
-       
     }
     .menuLink {
         text-decoration: none;
@@ -136,22 +127,32 @@ header {
         font-weight: 500;
         margin-bottom: 1rem;
     }
-
-    .menuFooter {
+    .menuAuth {
         width: 100%;
-        height: 20%;
+        height: 15%;
         display: flex;
         justify-content: center;
         align-items: flex-end;
         padding-bottom: 1rem;
-
+        #logoutButton {
+            background-color: #fa2525d6 ;
+        }
+    }
+    .menuIcons {
+        width: 80%;
+        height: 15%;
+        display: flex;
+        justify-content: space-evenly;
+        margin-bottom: 0.5rem;
+        align-items: center;
+        align-self: center;
         .menuIcon {
             text-decoration: none;
             color: white;
-            font-size: 24px;
-            margin: 0 1rem;
+            font-size: 30px;
+            display: flex;
+            text-align: center;
         }
-
     }
     
 }   

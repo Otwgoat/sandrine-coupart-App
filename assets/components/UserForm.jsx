@@ -1,14 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import Field from "./adminFormComponents/Field";
-import FieldGroup from "./adminFormComponents/FieldGroup";
-import DietGroup from "./adminFormComponents/DietGroup";
 import usersApi from "../services/usersApi";
 import Modal from "./adminFormComponents/Modal";
+import possibleAllergens from "../data/allergens";
+import SelectGroup from "./adminFormComponents/SelectGroup";
+import possibleDiets from "../data/diets";
 
 const UserForm = ({ isVisible }) => {
   const [openModal, setOpenModal] = useState(false);
   const closeModal = () => {
     setOpenModal(false);
+    console.log("modal closed");
   };
   const { faker } = require("@faker-js/faker");
   const formRef = useRef(formRef);
@@ -19,7 +21,7 @@ const UserForm = ({ isVisible }) => {
 
   // ================================
   // === Watching allergens field ===
-  const [allergens, setAllergens] = useState(["Aucun"]);
+  const [allergens, setAllergens] = useState([]);
   const [allergen, setAllergen] = useState("");
   const handleAddAllergen = (e) => {
     e.preventDefault();
@@ -82,7 +84,7 @@ const UserForm = ({ isVisible }) => {
     console.log(userData);
 
     try {
-      await usersApi.create(userData);
+      await usersApi.createUser(userData);
       console.log("submission succeed");
       setErrors({});
       setAllergens([]);
@@ -145,10 +147,11 @@ const UserForm = ({ isVisible }) => {
         onChange={(e) => setEmail(e.target.value)}
         error={errors.email}
       />
-      <FieldGroup
-        name="allergens"
-        label="Allergènes"
-        button="l'allergène"
+      <SelectGroup
+        labelName="allergens"
+        label="Allergène(s)"
+        buttonName="l'allergène"
+        itemList={possibleAllergens}
         value={allergen}
         entries={allergens}
         onClick={handleAddAllergen}
@@ -156,8 +159,12 @@ const UserForm = ({ isVisible }) => {
         onChange={(e) => setAllergen(e.target.value)}
         error={errors.allergens}
       />
-      <DietGroup
-        diets={diets}
+      <SelectGroup
+        labelName="diets"
+        label="Régime(s) alimentaire"
+        buttonName="le régime"
+        itemList={possibleDiets}
+        value={diet}
         onClick={handleAddDiet}
         spanOnClick={deleteDiet}
         onChange={(e) => setDiet(e.target.value)}

@@ -48,6 +48,8 @@ class RateReviewController extends AbstractController
         $user = $security->getUser();
         $review->setUser($user);
         $recipe->addReview($review);
+        $createdAt = new \DateTimeImmutable();
+        $review->setCreatedAt($createdAt);
         $errors = $validator->validate($review);
         if ($errors->count() > 0) {
             return new JsonResponse($serializer->serialize($errors, 'json'), JsonResponse::HTTP_BAD_REQUEST, [], true);

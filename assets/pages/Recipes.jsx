@@ -10,8 +10,10 @@ import usersApi from "../services/usersApi";
 
 const Recipes = () => {
   const [recipes, setRecipes] = useState();
+
   const [recipesLoaded, setRecipesLoaded] = useState(false);
   const [userDiets, setUserDiets] = useState([]);
+  const [userAllergens, setUserAllergens] = useState([]);
   const [userFirstname, setUserFirstname] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(
     authAPI.isAuthenticated()
@@ -40,13 +42,16 @@ const Recipes = () => {
     const token = await window.localStorage.getItem("authToken");
     let jwtData = jwtDecode(token);
     setUserDiets(jwtData.diet);
+    setUserAllergens(jwtData.allergens);
     setUserFirstname(jwtData.firstname);
     loadRecipes();
   };
   const filterRecipes = () => {
     if (recipesLoaded) {
-      const filteredRecipes = recipes.filter((recipe) =>
-        recipe.diets.some((diet) => userDiets.includes(diet))
+      const filteredRecipes = recipes.filter(
+        (recipe) =>
+          recipe.diets.some((diet) => userDiets.includes(diet)) &&
+          recipe.allergens.some((allergen) => !userAllergens.includes(allergen))
       );
       setCorrespondantRecipes(filteredRecipes);
     }
@@ -60,7 +65,8 @@ const Recipes = () => {
     if (isAuthenticated) {
       assignDiets();
     } else {
-      recipesApi.findAllRecipes(10).then((recipes) => {
+      recipesApi.findAllRecipes(11).then((recipes) => {
+        setRecipes(recipes);
         setCorrespondantRecipes(recipes);
       });
     }
@@ -70,7 +76,11 @@ const Recipes = () => {
   const searchingRecipe = (toSearch) => {
     let recipeName = toSearch.toLowerCase();
     if (recipeName === "") {
-      setCorrespondantRecipes();
+      if (isAuthenticated) {
+        filterRecipes();
+      } else {
+        setCorrespondantRecipes(recipes);
+      }
     } else {
       const filteredRecipes = recipes.filter((recipe) =>
         recipe.title.toLowerCase().includes(recipeName)
@@ -119,37 +129,65 @@ const Recipes = () => {
           </div>
         )}
         <div id="searchBar">
-          <label htmlFor="searchRecipe">Chercher une recette</label>
           <input
             type="text"
             id="searchRecipe"
             name="searchRecipe"
-            placeholder="Salade de quinoa aux légumes"
+            placeholder="Chercher une recette"
             onChange={(e) => searchingRecipe(e.target.value)}
           />
         </div>
-        <div id="recipesContainer">
-          {correspondantRecipes ? (
-            correspondantRecipes.map((recipe) => (
-              <RecipeCard
-                key={recipe.id}
-                id={recipe.id}
-                title={recipe.title}
-                description={recipe.description}
-                allergens={recipe.allergens}
-                review={getAverageRate(recipe)}
-                prepTime={recipe.prepTime}
-                cookTime={recipe.cookTime}
-                restTime={recipe.restTime}
-              />
-            ))
-          ) : (
-            <p>
-              Aucune recette ne correspond à votre régime actuellement. Revenez
-              plus tard découvrir ce que je vous ai concocté.
-            </p>
-          )}
-        </div>
+        {isAuthenticated ? (
+          <div id="recipesContainer">
+            {correspondantRecipes ? (
+              correspondantRecipes.map((recipe) => (
+                <RecipeCard
+                  key={recipe.id}
+                  isAuthenticated={isAuthenticated}
+                  id={recipe.id}
+                  title={recipe.title}
+                  description={recipe.description}
+                  allergens={recipe.allergens}
+                  review={getAverageRate(recipe)}
+                  prepTime={recipe.prepTime}
+                  cookTime={recipe.cookTime}
+                  restTime={recipe.restTime}
+                  requireAuth={recipe.requireAuth}
+                />
+              ))
+            ) : (
+              <p>
+                Aucune recette ne correspond à votre recherche actuellement.
+                Revenez plus tard pour découvrir de nouvelles recettes.
+              </p>
+            )}
+          </div>
+        ) : (
+          <div id="recipesContainer">
+            {correspondantRecipes ? (
+              correspondantRecipes.map((recipe) => (
+                <RecipeCard
+                  key={recipe.id}
+                  isAuthenticated={isAuthenticated}
+                  id={recipe.id}
+                  title={recipe.title}
+                  description={recipe.description}
+                  allergens={recipe.allergens}
+                  review={getAverageRate(recipe)}
+                  prepTime={recipe.prepTime}
+                  cookTime={recipe.cookTime}
+                  restTime={recipe.restTime}
+                  requireAuth={recipe.requireAuth}
+                />
+              ))
+            ) : (
+              <p>
+                Aucune recette ne correspond à votre recherche actuellement.
+                Revenez plus tard pour découvrir de nouvelles recettes.
+              </p>
+            )}
+          </div>
+        )}
       </main>
     </div>
   );

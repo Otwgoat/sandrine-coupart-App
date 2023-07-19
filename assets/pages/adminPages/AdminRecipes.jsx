@@ -4,6 +4,9 @@ import RecipeForm from "../../components/RecipeForm";
 import Metadescription from "../../components/Metadescription";
 import recipesApi from "../../services/recipesApi";
 import Button from "../../components/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const AdminRecipes = () => {
   const inputRef = useRef(inputRef);
@@ -11,7 +14,7 @@ const AdminRecipes = () => {
   const [isVisible, setIsVisible] = useState(false);
   const toggleForm = () => setIsVisible(!isVisible);
   const [correspondantRecipes, setCorrespondantRecipes] = useState();
-
+  const deleteRecipe = (id) => {};
   const searchingRecipe = (toSearch) => {
     let recipeName = toSearch.toLowerCase();
     if (recipeName === "") {
@@ -35,6 +38,10 @@ const AdminRecipes = () => {
       <Metadescription />
       <Header title="Gérer les recettes" />
       <main className="adminMain" id="adminRecipesPage">
+        <Link to="/admin" className="prevLink">
+          <FontAwesomeIcon icon={faArrowLeft} style={{ color: "#3E5378" }} />{" "}
+          Revenir à l'écran précédent
+        </Link>
         <button
           className={isVisible ? "ctaButtonActive" : "ctaButton"}
           id="addRecipeBtn"
@@ -46,13 +53,12 @@ const AdminRecipes = () => {
         <RecipeForm isVisible={isVisible} />
         {!isVisible && (
           <div className="adminList">
-            <label htmlFor="searchRecipe">Chercher une recette</label>
             <input
               ref={inputRef}
               type="text"
               id="searchRecipe"
               name="searchRecipe"
-              placeholder="Salade de quinoa aux légumes"
+              placeholder="Chercher une recette"
               onChange={(e) => searchingRecipe(e.target.value)}
             />
             {correspondantRecipes && correspondantRecipes.length >= 1 ? (
@@ -67,7 +73,12 @@ const AdminRecipes = () => {
                     <p>{recipe.title}</p>
                     <Button
                       path={"/admin/recette/" + recipe.id}
-                      title="Voir plus"
+                      title={
+                        <FontAwesomeIcon
+                          icon={faArrowRight}
+                          style={{ color: "#68B0AB" }}
+                        />
+                      }
                     />
                   </div>
                 ))
@@ -76,10 +87,16 @@ const AdminRecipes = () => {
                     <p>{recipe.title}</p>
                     <Button
                       path={"/admin/recette/" + recipe.id}
-                      title="Voir plus"
+                      title={
+                        <FontAwesomeIcon
+                          icon={faArrowRight}
+                          style={{ color: "#68B0AB" }}
+                        />
+                      }
                     />
                   </div>
                 ))}
+            <Button path={"/admin"} title="Revenir à l'écran précédent" />
           </div>
         )}
       </main>

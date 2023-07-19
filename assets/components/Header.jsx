@@ -8,6 +8,13 @@ import {
   useNavigate,
 } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebookF,
+  faInstagram,
+  faGooglePlusG,
+} from "@fortawesome/free-brands-svg-icons";
+import Button from "./Button";
 
 const Header = (props) => {
   const navigate = useNavigate();
@@ -60,17 +67,6 @@ const Header = (props) => {
         </div>
       </div>
       <nav className={isOpen ? "navMenuActive" : "navMenu"}>
-        <div className="menuHeader">
-          {(!isAuthenticated && (
-            <Link to="/login" className="menuLink">
-              Se connecter
-            </Link>
-          )) || (
-            <Link className="menuLink" onClick={handleLogout}>
-              Déconnexion
-            </Link>
-          )}
-        </div>
         <div className="menuBody">
           <NavLink
             to="/"
@@ -88,16 +84,29 @@ const Header = (props) => {
             Contact
           </a>
         </div>
-        {/** TODO: === ADD SOCIAL MEDIA ICONS=== */}
-        <div className="menuFooter">
+        <div className="menuAuth">
+          {(!isAuthenticated && (
+            <Button id="loginButton" path="/login" title="Se connecter" />
+          )) || (
+            <Button
+              id="logoutButton"
+              title="Déconnexion"
+              onClick={handleLogout}
+            />
+          )}
+        </div>
+        <div className="menuIcons">
           <a href="#" className="menuIcon">
-            Fb
+            <FontAwesomeIcon icon={faFacebookF} style={{ color: "#ffffff" }} />
           </a>
           <a href="#" className="menuIcon">
-            Ig
+            <FontAwesomeIcon icon={faInstagram} style={{ color: "#ffffff" }} />
           </a>
           <a href="#" className="menuIcon">
-            Gl
+            <FontAwesomeIcon
+              icon={faGooglePlusG}
+              style={{ color: "#ffffff" }}
+            />
           </a>
         </div>
       </nav>

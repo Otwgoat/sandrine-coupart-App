@@ -8,10 +8,28 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        width: 90%;
+        width: 80%;
+        margin-bottom: 1rem ;
         #mainTitle , #mainIntro {
             text-align: center;
             width: 100%;
+        }
+    }
+    #searchBar {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        input {
+            border: 1px solid #68B0AB;
+            border-radius: 30px;
+            height: 5vh;
+            width: 80%;
+            text-align: center;
+
+
+            
         }
     }
     #recipesContainer {
@@ -20,6 +38,10 @@
         align-items: center;
         width: 100%;
         margin: 2rem 0;
+
+        .recipeCard {
+            margin-bottom: 2rem;
+        }
         
     }
 

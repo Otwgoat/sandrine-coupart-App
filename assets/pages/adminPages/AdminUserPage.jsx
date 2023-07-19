@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import Metadescription from "../../components/Metadescription";
 import Header from "../../components/Header";
 import usersApi from "../../services/usersApi";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 const AdminUserPage = () => {
   const [user, setUser] = useState();
@@ -22,8 +24,12 @@ const AdminUserPage = () => {
   return (
     <div className="container">
       <Metadescription />
-      <Header title="Fiche d'utilisateur" />
+      <Header title="Fiche du patient" />
       <main className="adminMain">
+        <Link to="/admin/utilisateurs" className="prevLink">
+          <FontAwesomeIcon icon={faArrowLeft} style={{ color: "#3E5378" }} />{" "}
+          Retour à la liste des patients
+        </Link>
         {user && (
           <div id="userProfile">
             <h2>
@@ -31,21 +37,25 @@ const AdminUserPage = () => {
             </h2>
             <p>{user.email}</p>
             <div>
-              <p>Allergène(s): </p>
+              <p className="userProfileItemTitle">Allergène(s): </p>
               {user.allergens.map((allergen, index) => (
                 <p key={index}>{allergen}</p>
               ))}
             </div>
             <div>
-              <p>Régime(s): </p>
+              <p className="userProfileItemTitle">Régime(s): </p>
               {user.diet.map((item, index) => (
                 <p key={index}>{item}</p>
               ))}
             </div>
             <div className="buttons">
               <button className="ctaButton">Contacter</button>
-              <button className="ctaButton" onClick={handleDelete}>
-                Supprimer
+              <button
+                id="deleteButton"
+                className="ctaButton"
+                onClick={handleDelete}
+              >
+                Supprimer le patient
               </button>
             </div>
           </div>
