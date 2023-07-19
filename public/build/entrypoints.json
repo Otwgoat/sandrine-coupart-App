@@ -1,0 +1,14 @@
+{
+  "entrypoints": {
+    "app": {
+      "js": [
+        "http://localhost:8080/build/runtime.js",
+        "http://localhost:8080/build/vendors-node_modules_faker-js_faker_dist_cjs_index_js-node_modules_fortawesome_react-fontawes-0602fb.js",
+        "http://localhost:8080/build/app.js"
+      ],
+      "css": [
+        "http://localhost:8080/build/app.css"
+      ]
+    }
+  }
+}

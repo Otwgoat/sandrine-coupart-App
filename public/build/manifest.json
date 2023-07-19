@@ -1,0 +1,15 @@
+{
+  "build/app.css": "http://localhost:8080/build/app.css",
+  "build/app.js": "http://localhost:8080/build/app.js",
+  "build/runtime.js": "http://localhost:8080/build/runtime.js",
+  "build/vendors-node_modules_faker-js_faker_dist_cjs_index_js-node_modules_core-js_modules_es_array_c-497307.js": "http://localhost:8080/build/vendors-node_modules_faker-js_faker_dist_cjs_index_js-node_modules_core-js_modules_es_array_c-497307.js",
+  "build/images/recipe1.png": "http://localhost:8080/build/images/recipe1.8efe5c5b.png",
+  "build/vendors-node_modules_faker-js_faker_dist_cjs_index_js-node_modules_core-js_modules_es_array_c-976bac.js": "http://localhost:8080/build/vendors-node_modules_faker-js_faker_dist_cjs_index_js-node_modules_core-js_modules_es_array_c-976bac.js",
+  "build/app.png": "http://localhost:8080/build/images/recipe1.8efe5c5b.png",
+  "build/vendors-node_modules_faker-js_faker_dist_cjs_index_js-node_modules_fortawesome_react-fontawes-ec098f.js": "http://localhost:8080/build/vendors-node_modules_faker-js_faker_dist_cjs_index_js-node_modules_fortawesome_react-fontawes-ec098f.js",
+  "build/vendors-node_modules_faker-js_faker_dist_cjs_index_js-node_modules_fortawesome_react-fontawes-7f8e70.js": "http://localhost:8080/build/vendors-node_modules_faker-js_faker_dist_cjs_index_js-node_modules_fortawesome_react-fontawes-7f8e70.js",
+  "build/vendors-node_modules_faker-js_faker_dist_cjs_index_js-node_modules_fortawesome_react-fontawes-8cfd31.js": "http://localhost:8080/build/vendors-node_modules_faker-js_faker_dist_cjs_index_js-node_modules_fortawesome_react-fontawes-8cfd31.js",
+  "build/vendors-node_modules_fortawesome_react-fontawesome_index_es_js-node_modules_core-js_modules_e-adc5c1.js": "http://localhost:8080/build/vendors-node_modules_fortawesome_react-fontawesome_index_es_js-node_modules_core-js_modules_e-adc5c1.js",
+  "build/vendors-node_modules_faker-js_faker_dist_cjs_index_js-node_modules_fortawesome_react-fontawes-0602fb.js": "http://localhost:8080/build/vendors-node_modules_faker-js_faker_dist_cjs_index_js-node_modules_fortawesome_react-fontawes-0602fb.js",
+  "build/vendors-node_modules_faker-js_faker_dist_cjs_index_js-node_modules_fortawesome_react-fontawes-ea1852.js": "http://localhost:8080/build/vendors-node_modules_faker-js_faker_dist_cjs_index_js-node_modules_fortawesome_react-fontawes-ea1852.js"
+}
