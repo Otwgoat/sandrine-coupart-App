@@ -29,7 +29,7 @@ final class Version20230623094951 extends AbstractMigration
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE rate_review DROP FOREIGN KEY FK_DBB4B0AD59D8A214');
-        $this->addSql('ALTER TABLE rate_review DROP FOREIGN KEY FK_DBB4B0ADA76ED395');
+        //$this->addSql('ALTER TABLE rate_review DROP FOREIGN KEY FK_DBB4B0ADA76ED395');
         $this->addSql('DROP TABLE rate_review');
     }
 }
