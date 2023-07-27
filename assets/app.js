@@ -15,6 +15,8 @@ import AdminUsers from './pages/adminPages/AdminUsers';
 import AdminUserPage from './pages/adminPages/AdminUserPage';
 import AdminRecipePage from './pages/adminPages/AdminRecipePage';
 import Recipe from './pages/Recipe';
+import Contact from './pages/Contact';
+
 
 
 
@@ -55,6 +57,7 @@ const App = () => {
                     <Route exact path="/"  element={<Homepage />} />
                     <Route path="/recettes"  element={<Recipes  />}  />
                     <Route path="/recette/:id" element={<Recipe />} />
+                    <Route path="/contact" element={<Contact/>} />
                     <Route exact path="/login"  element={<LoginPage />} />
                     
                 </Routes>

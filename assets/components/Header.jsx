@@ -80,9 +80,12 @@ const Header = (props) => {
           >
             Mes recettes
           </NavLink>
-          <a href="#" className="menuLink">
+          <NavLink
+            to="/contact"
+            className={pathname === "/contact" ? "menuLinkActive" : "menuLink"}
+          >
             Contact
-          </a>
+          </NavLink>
         </div>
         <div className="menuAuth">
           {(!isAuthenticated && (
