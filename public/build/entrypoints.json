@@ -3,7 +3,7 @@
     "app": {
       "js": [
         "http://localhost:8080/build/runtime.js",
-        "http://localhost:8080/build/vendors-node_modules_faker-js_faker_dist_cjs_index_js-node_modules_fortawesome_react-fontawes-21d489.js",
+        "http://localhost:8080/build/vendors-node_modules_faker-js_faker_dist_cjs_index_js-node_modules_fortawesome_react-fontawes-4f7523.js",
         "http://localhost:8080/build/app.js"
       ],
       "css": [

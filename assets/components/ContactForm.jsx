@@ -6,7 +6,7 @@ function ContactForm() {
   const endPoint = formspree.getEndPoint();
   console.log(endPoint);
   const [messageSubmited, setMessageSubmited] = useState(false);
-  const [state, handleSubmit] = useForm(endPoint.toString());
+  const [state, handleSubmit] = useForm(endPoint);
   if (state.succeeded) {
     return (
       <div className="submissionSucceeded">
