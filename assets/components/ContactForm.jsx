@@ -4,8 +4,9 @@ import Button from "./Button";
 import formspree from "../services/formspree.js";
 function ContactForm() {
   const endPoint = formspree.getEndPoint();
+  console.log(endPoint);
   const [messageSubmited, setMessageSubmited] = useState(false);
-  const [state, handleSubmit] = useForm(endPoint);
+  const [state, handleSubmit] = useForm(endPoint.toString());
   if (state.succeeded) {
     return (
       <div className="submissionSucceeded">
