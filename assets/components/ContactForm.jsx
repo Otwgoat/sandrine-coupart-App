@@ -1,12 +1,10 @@
 import React, { useRef, useState } from "react";
 import { useForm, ValidationError } from "@formspree/react";
 import Button from "./Button";
-import formspree from "../services/formspree.js";
+
 function ContactForm() {
-  const endPoint = formspree.getEndPoint();
-  console.log(endPoint);
   const [messageSubmited, setMessageSubmited] = useState(false);
-  const [state, handleSubmit] = useForm(endPoint);
+  const [state, handleSubmit] = useForm("mbjvlpzb");
   if (state.succeeded) {
     return (
       <div className="submissionSucceeded">
