@@ -1,5 +1,5 @@
 function getEndPoint() {
-    return process.env.REACT_APP_FORMSPREE_ENDPOINT;
+    return process.env.FORMSPREE_ENDPOINT;
 }
 
 export default {getEndPoint};
