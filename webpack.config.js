@@ -1,5 +1,6 @@
 const Encore = require('@symfony/webpack-encore');
-const Dotenv = require('dotenv-webpack');
+const dotenv = require('dotenv-webpack');
+
 
 
 
@@ -12,7 +13,7 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 }
 
 Encore
-    
+ 
     // directory where compiled assets will be stored
     .setOutputPath('public/build/')
     // public path used by the web server to access the output path
@@ -78,8 +79,13 @@ Encore
     //.autoProvidejQuery()
     
 ;
-Encore.addPlugin(new Dotenv());
-module.exports = Encore.getWebpackConfig();
+
+module.exports = Encore.getWebpackConfig({
+
+
+  
+    
+});
 
 
 

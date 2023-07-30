@@ -5,7 +5,7 @@ const RecipePage = ({ recipe }) => {
   return (
     <>
       <div id="recipeHeader"></div>
-      <img src={recipe.img} />
+      <img src={recipe.imageUrl} />
       <p id="recipeDescription">{recipe.description}</p>
 
       <div id="firstSquare" className="recipeSquare">

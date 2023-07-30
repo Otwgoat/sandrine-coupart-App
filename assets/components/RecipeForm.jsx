@@ -6,7 +6,9 @@ import FieldGroup from "./adminFormComponents/FieldGroup";
 import SelectGroup from "./adminFormComponents/SelectGroup";
 import possibleAllergens from "../data/allergens";
 import possibleDiets from "../data/diets";
-
+import ImageInput from "./adminFormComponents/ImageInput";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { storage } from "../services/firebaseConfig";
 const RecipeForm = ({ isVisible }) => {
   const formRef = useRef(formRef);
   const [title, setTitle] = useState("");
@@ -19,6 +21,8 @@ const RecipeForm = ({ isVisible }) => {
   // === Watching ingredients field ===
   const [ingredients, setIngredients] = useState([]);
   const [ingredient, setIngredient] = useState("");
+  const [file, setFile] = useState(null);
+
   const handleAddIngredient = (e) => {
     e.preventDefault();
     let newIngredient = ingredient;
@@ -84,6 +88,18 @@ const RecipeForm = ({ isVisible }) => {
       setSteps(updatedSteps);
     });
   };
+  // ================================
+  // === SEND IMAGE TO FIREBASE ===
+  useEffect(() => {
+    if (file === null) return;
+    const uploadImage = async () => {
+      const imageRef = ref(storage, `images/${file.name}`);
+      await uploadBytes(imageRef, file);
+      await getDownloadURL(imageRef).then((imageUrl) => setImage(imageUrl));
+    };
+    uploadImage();
+  }, [file]);
+
   // ===================
   // === SUBMIT FORM ===
   const [errors, setErrors] = useState({
@@ -112,7 +128,7 @@ const RecipeForm = ({ isVisible }) => {
       allergens: allergens,
       diets: diets,
       steps: steps,
-      image: image,
+      imageUrl: image,
       requireAuth: requireAuth,
     };
     if (recipeData.allergens.length > 1) {
@@ -176,7 +192,6 @@ const RecipeForm = ({ isVisible }) => {
         label="Temps de préparation"
         name="prepTime"
         type="number"
-        value={prepTime}
         onChange={(e) => setPrepTime(Number(e.target.value))}
         error={errors.prepTime}
       />
@@ -236,12 +251,7 @@ const RecipeForm = ({ isVisible }) => {
         onClick={handleAddStep}
         error={errors.steps}
       />
-      <Field
-        label="Lien de l'image"
-        name="image"
-        type="text"
-        onChange={(e) => setImage(e.target.value)}
-      />
+      <ImageInput handleOnChange={(e) => setFile(e.target.files[0])} />
       <div className="formGroup withCheckbox">
         <label htmlFor="authentification">Authentification requise ?</label>
         <input

@@ -1,4 +1,6 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const FieldGroup = (props) => {
   return (
@@ -16,7 +18,12 @@ const FieldGroup = (props) => {
             props.entries.map((entry, index) => (
               <div className="formItem" key={index}>
                 <p>{entry}</p>
-                <span onClick={() => props.spanOnClick(index)}>S</span>
+                <span onClick={() => props.spanOnClick(index)}>
+                  <FontAwesomeIcon
+                    icon={faXmark}
+                    style={{ color: "#FA2525" }}
+                  />
+                </span>
               </div>
             ))}
         </div>

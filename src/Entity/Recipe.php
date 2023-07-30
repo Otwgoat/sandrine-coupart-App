@@ -74,6 +74,7 @@ class Recipe
 
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups('getRecipes')]
     private ?string $imageUrl = null;
 
     #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: RateReview::class, orphanRemoval: true, cascade: ['persist'])]

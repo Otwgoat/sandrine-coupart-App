@@ -10,7 +10,6 @@ import usersApi from "../services/usersApi";
 
 const Recipes = () => {
   const [recipes, setRecipes] = useState();
-
   const [recipesLoaded, setRecipesLoaded] = useState(false);
   const [userDiets, setUserDiets] = useState([]);
   const [userAllergens, setUserAllergens] = useState([]);
@@ -19,6 +18,7 @@ const Recipes = () => {
     authAPI.isAuthenticated()
   );
   const [correspondantRecipes, setCorrespondantRecipes] = useState();
+
   // === Get average rate of a recipe === //
   const getAverageRate = (recipe) => {
     if (recipe.reviews) {
@@ -149,6 +149,7 @@ const Recipes = () => {
                   description={recipe.description}
                   allergens={recipe.allergens}
                   review={getAverageRate(recipe)}
+                  imageUrl={recipe.imageUrl}
                   prepTime={recipe.prepTime}
                   cookTime={recipe.cookTime}
                   restTime={recipe.restTime}
@@ -174,6 +175,7 @@ const Recipes = () => {
                   description={recipe.description}
                   allergens={recipe.allergens}
                   review={getAverageRate(recipe)}
+                  imageUrl={recipe.imageUrl}
                   prepTime={recipe.prepTime}
                   cookTime={recipe.cookTime}
                   restTime={recipe.restTime}

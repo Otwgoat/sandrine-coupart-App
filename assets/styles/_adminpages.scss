@@ -127,6 +127,11 @@
             textarea {
                 margin-top: 0.5rem;
                 width: 100%;
+                height: 10vh;
+                border: 1px solid #68B0AB;
+                border-radius: 10px;
+                
+               
             }
             label {
                 width: 100%;
@@ -142,9 +147,12 @@
                 width: 100%;
                 text-align: center;
             }
+            #inputFile {
+                border: none;
+                border-radius: 0px;
+            }
             .formList {
                 width: 100%;
-                
                 display: flex;
                 margin-top: 0.5rem;
                 flex-direction: column;
@@ -152,18 +160,33 @@
 
                 .formItem {
                     margin-top: 0.5rem ;
+                    margin-bottom: 0.5rem;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    width: 50%;
-
+                    width: 100%;
+                    background-color: #3E5378;
+                    justify-content: space-evenly;
+                    border-radius: 10px;
+                    
                     p {
                         display: flex;
                         justify-content: flex-start;
+                        color: white;
+                        padding: 0.5rem;
+                        width: 80%;
+                        overflow: auto;
+                        word-wrap: break-word;
+                        word-break: break-all;
                     }
-                    
-                    
+                    .span {
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        width: 10%;
+                    }
                 }
+                
                 
             }
             .withCtaGroup {
@@ -206,7 +229,9 @@
             
 
         }
+       
     }
+    
     #recipePage {
         .buttons {
             margin-top: 1rem ;

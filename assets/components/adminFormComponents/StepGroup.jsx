@@ -1,4 +1,6 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const StepGroup = (props) => {
   return (
@@ -10,9 +12,11 @@ const StepGroup = (props) => {
       <div className="formList">
         {props.steps.length >= 1 &&
           props.steps.map((step, index) => (
-            <div className="formItem" key={index}>
-              <p>{step}</p>
-              <span onClick={() => props.spanOnClick(index)}>S</span>
+            <div className="formItem stepItem" key={index}>
+              <p className="addedStep">{step}</p>
+              <span onClick={() => props.spanOnClick(index)}>
+                <FontAwesomeIcon icon={faXmark} style={{ color: "#FA2525" }} />
+              </span>
             </div>
           ))}
       </div>

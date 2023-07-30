@@ -21,9 +21,11 @@ import Contact from './pages/Contact';
 
 
 
+
 authAPI.setup();
 const App = () => {
-
+    
+    
     const [isAdmin, setIsAdmin] = useState(authAPI.isAdmin());
     const [isAuthenticated, setIsAuthenticated] = useState(authAPI.isAuthenticated());
     

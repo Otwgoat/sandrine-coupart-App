@@ -7,8 +7,10 @@
     .recipeImg {
         background-color: #3E5378;
         border: solid 1px #68B0AB;
-        width: 100%;
+        width: 100vw;
         height: 50vh;
+        
+        
         
 
     }
@@ -19,6 +21,7 @@
         display: flex;
         width: 100%;
         justify-content: space-between;
+        
         
 
         .recipeTitle {
