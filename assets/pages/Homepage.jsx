@@ -5,6 +5,7 @@ import topImage from "../../src/images/recipe1.png";
 import Button from "../components/Button";
 import RecipeCard from "../components/RecipeCard";
 import recipesApi from "../services/recipesApi";
+import Footer from "../components/Footer";
 
 const Homepage = () => {
   const [recipes, setRecipes] = useState();
@@ -79,7 +80,7 @@ const Homepage = () => {
             <Button path="/recettes" title="Découvrir mes recettes" />
           </div>
         </div>
-        <div id="dailyRecipeContainer">
+        <div className="homePageSection" id="dailyRecipeContainer">
           <h2 id="dailyRecipeTitle">Une de vos recettes préférées</h2>
           {recipe && (
             <RecipeCard
@@ -96,8 +97,45 @@ const Homepage = () => {
               requireAuth={recipe.requireAuth}
             />
           )}
+          <span className="underline"></span>
+        </div>
+        <div className="homePageSection" id="aboutMeContainer">
+          <h2>À propos</h2>
+          <p>
+            Diplomée d’état, je vous accompagne depuis plus de 10 ans, dans de
+            le but de vous apporter les solutions les moins restrictives
+            possibles mais tout aussi importantes pour votre santé. Je consulte
+            sur rendez-vous dans mon cabinet, à Caen, ou par visio-conférence,
+            et nous déterminons ensemble la meilleure approche à adopter pour
+            votre bien-être.
+          </p>
+          <Button path="/contact" title="Prendre rendez-vous" />
+          <span className="underLine"></span>
+        </div>
+        <div className="homePageSection" id="servicesContainer">
+          <h2>Mes services</h2>
+          <div className="serviceContainer">
+            <h4>Consultation</h4>
+            <p>Sur rendez-vous , au cabinet ou par visio.</p>
+          </div>
+          <div className="serviceContainer">
+            <h4>Suivi long terme</h4>
+            <p>
+              Pour des raisons personelles ou pour des raisons de santé, je vous
+              accompagne aussi longtemps qu’il le faut.
+            </p>
+          </div>
+          <div className="serviceContainer">
+            <h4>Atelier de prévention</h4>
+            <p>
+              J’anime des ateliers en groupe, de prévention et d’information sur
+              la nutrition.
+            </p>
+          </div>
+          <span className="underLine"></span>
         </div>
       </main>
+      <Footer />
     </div>
   );
 };

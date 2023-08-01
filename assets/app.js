@@ -16,6 +16,8 @@ import AdminUserPage from './pages/adminPages/AdminUserPage';
 import AdminRecipePage from './pages/adminPages/AdminRecipePage';
 import Recipe from './pages/Recipe';
 import Contact from './pages/Contact';
+import LegalNoticePage from './pages/LegalNoticesPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 
 
 
@@ -61,7 +63,8 @@ const App = () => {
                     <Route path="/recette/:id" element={<Recipe />} />
                     <Route path="/contact" element={<Contact/>} />
                     <Route exact path="/login"  element={<LoginPage />} />
-                    
+                    <Route path="/mentions-legales" element={<LegalNoticePage />} />
+                    <Route path="/politique-confidentialite" element={<PrivacyPolicyPage />} />
                 </Routes>
             </BrowserRouter>
         </AuthContext.Provider>

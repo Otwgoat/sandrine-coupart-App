@@ -1,0 +1,34 @@
+#footerContainer {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    #socialContainer {
+        width: 50%;
+        display: flex;
+        justify-content: space-evenly;
+        .icon {
+            font-size: 20px;
+        }
+
+        
+        
+    }
+    #cgvs {
+        width: 50%;
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        a {
+            font-size: 14px;
+        }
+        p {
+            width: 100%;
+            padding-bottom: 0.5rem;
+        }
+    }
+
+}

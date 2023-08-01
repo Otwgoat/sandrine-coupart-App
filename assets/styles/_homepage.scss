@@ -64,5 +64,36 @@ main {
 
 
     }
-
+    #aboutMeContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .ctaButton {
+            margin-top: 1rem;
+        }
+    }
+    #servicesContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 90%;
+        .serviceContainer {
+            background-color: #3E5378;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 1rem;
+            border-radius: 15px;
+            padding: 0.5rem;
+            p, h4 {
+                color: white;
+                
+            }
+            h4 {
+                margin-top: 0rem;
+            }
+        }
+    }
 }
