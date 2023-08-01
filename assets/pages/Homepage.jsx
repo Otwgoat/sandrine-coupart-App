@@ -26,6 +26,7 @@ const Homepage = () => {
         (recipe) =>
           getAverageRate(recipe) >= 3.5 && recipe.requireAuth === false
       );
+      console.log(filteredRecipes);
       if (filteredRecipes.length > 1) {
         let i =
           Math.floor(Math.random() * (filteredRecipes.length - 0 + 1)) + 0;

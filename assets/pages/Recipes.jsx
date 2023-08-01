@@ -104,7 +104,7 @@ const Recipes = () => {
           <div className="mainBanner">
             <h3 id="mainTitle">
               Bonjour {userFirstname}, voici des recettes adaptées à votre
-              régime alimentaire.
+              régime "{userDiets}".
             </h3>
 
             <p id="mainIntro">
