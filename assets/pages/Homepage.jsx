@@ -92,6 +92,7 @@ const Homepage = () => {
               prepTime={recipe.prepTime}
               cookTime={recipe.cookTime}
               restTime={recipe.restTime}
+              imageUrl={recipe.imageUrl}
               requireAuth={recipe.requireAuth}
             />
           )}
