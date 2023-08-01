@@ -2,6 +2,7 @@ import React from "react";
 import Metadescription from "../components/Metadescription";
 import Header from "../components/Header";
 import ContactForm from "../components/ContactForm";
+import Footer from "../components/Footer";
 
 const Contact = () => {
   return (
@@ -20,6 +21,7 @@ const Contact = () => {
         </p>
         <ContactForm />
       </main>
+      <Footer />
     </div>
   );
 };

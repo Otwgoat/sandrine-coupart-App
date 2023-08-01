@@ -7,6 +7,7 @@ import Metadescription from "../components/Metadescription";
 import authAPI from "../services/authAPI";
 import jwtDecode from "jwt-decode";
 import usersApi from "../services/usersApi";
+import Footer from "../components/Footer";
 
 const Recipes = () => {
   const [recipes, setRecipes] = useState();
@@ -191,6 +192,7 @@ const Recipes = () => {
           </div>
         )}
       </main>
+      <Footer />
     </div>
   );
 };

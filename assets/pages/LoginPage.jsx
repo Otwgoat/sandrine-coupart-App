@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/AuthContext";
 import Header from "../components/Header";
 import Metadescription from "../components/Metadescription";
+import Footer from "../components/Footer";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -91,6 +92,7 @@ const LoginPage = () => {
           </div>
         </form>
       </main>
+      <Footer />
     </div>
   );
 };

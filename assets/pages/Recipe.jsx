@@ -9,6 +9,7 @@ import jwtDecode from "jwt-decode";
 import RecipePage from "../components/RecipePage";
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
 
 const Recipe = () => {
   const reviewsContainer = useRef(reviewsContainer);
@@ -165,6 +166,7 @@ const Recipe = () => {
           <Button path="/contact" title="Me contacter" />
         </main>
       )}
+      <Footer />
     </div>
   );
 };

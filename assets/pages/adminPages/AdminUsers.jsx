@@ -7,6 +7,7 @@ import Button from "../../components/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import Footer from "../../components/Footer";
 
 const AdminUsers = () => {
   const [users, setUsers] = useState([]);
@@ -97,6 +98,7 @@ const AdminUsers = () => {
           </div>
         )}
       </main>
+      <Footer />
     </div>
   );
 };

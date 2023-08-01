@@ -5,6 +5,7 @@ import Metadescription from "../components/Metadescription";
 import { useNavigate } from "react-router-dom";
 import authAPI from "../services/authAPI";
 import AuthContext from "../contexts/AuthContext";
+import Footer from "../components/Footer";
 
 const AdminPage = () => {
   const navigate = useNavigate();
@@ -42,6 +43,7 @@ const AdminPage = () => {
           </button>
         </div>
       </main>
+      <Footer />
     </div>
   );
 };
