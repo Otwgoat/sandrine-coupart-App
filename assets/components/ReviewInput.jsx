@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import reviewsApi from "../services/reviewsApi";
 
 const ReviewInput = ({ isVisible, recipeId, userId, updateLastReview }) => {
+  const formRef = useRef(formRef);
   const [recipe, setRecipe] = useState(recipeId);
   const [user, setUser] = useState(userId);
   const [reviewList, setReviewList] = useState([]);
@@ -27,10 +28,13 @@ const ReviewInput = ({ isVisible, recipeId, userId, updateLastReview }) => {
         await reviewsApi
           .createReview(reviewData, recipe.id)
           .then(updateLastReview(reviewData));
+
         console.log("submission succeed");
       }
+      formRef.current.reset();
     } catch (error) {
       if (error.response && error.response.data) {
+        console.log(error);
         const violations = error.response.data.violations;
         console.log(violations);
         // Check if there's violation(s) and assign them to the properties in error's useState
@@ -51,6 +55,7 @@ const ReviewInput = ({ isVisible, recipeId, userId, updateLastReview }) => {
       id="reviewInput"
       className={isVisible ? "formActive" : "form"}
       onSubmit={handleSubmit}
+      ref={formRef}
     >
       <div id="rateGroup">
         <label htmlFor="rate">Note: </label>
