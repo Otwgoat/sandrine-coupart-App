@@ -10,9 +10,12 @@ main {
         display: flex;
         flex-direction: column;
         align-items: center;
+        
+        
         #topOfPageImg {
             width: 100%;
             height: 370px;
+            
             img {
                 width: 100%;
                 height: 100%;
@@ -64,6 +67,11 @@ main {
 
 
     }
+    .homePageSection {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
     #aboutMeContainer {
         display: flex;
         flex-direction: column;
@@ -94,6 +102,185 @@ main {
             h4 {
                 margin-top: 0rem;
             }
+        }
+    }
+}
+/* Styles for larger screen with react-responsive. See isDesktop const on homepage jsx page */
+/*******************************************************************************************/
+.homepageLarge {
+    margin-top: 2vh;
+    
+    #topOfPage {
+        display: flex;
+        flex-direction: row-reverse;
+        width: 100%;
+        height: 90vh;
+        align-items: center;
+        
+        
+       
+        #topOfPageImg {
+          height: 100%;
+          border-top:  double 4px #68B0AB;
+          border-bottom:  double 4px #68B0AB;
+        }
+        #topOfPagePresentation {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: center;
+            margin-top: 0;
+            position: relative;
+            box-shadow: 19px 0px 10px 15px white;
+                
+            
+            
+            p {
+                width: 60%;
+            }
+
+            .ctaButton {
+                width: 60%;
+               
+            }
+        }
+       
+    }
+    #dailyRecipeContainer {
+        width: 100%;
+        display: flex;
+        .recipeCardLarge {
+            width: 80%;
+            height: 60vh;
+            display: flex;
+            flex-direction: row;
+            border: 4px double #68B0AB;
+            
+            
+            .recipeCardLeft {
+                width: 50%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .recipeImg {
+                    background-color: #3E5378;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .recipeCardRight {
+                width: 50%;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                justify-content: space-between;
+                padding: 1rem 0;
+                border-left: 4px double #68B0AB;
+               
+                .ctaButton {
+                    width: 50%;
+                   
+                }
+                .recipeHeader {
+                    width: 80%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-evenly;
+                    .recipeTitle {
+                        width: 80%;
+                    }
+                    .recipeReview {
+                        width: 20%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                    }
+                }
+                .recipeDescription {
+                    text-align: center;
+                    display: flex;
+                    justify-content: center;
+                }
+                .recipeBody {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    box-sizing: content-box;
+                    #prepTimeInfo , #cookTimeInfo , #restTimeInfo {
+                        border-radius: 5px;
+                        width: 50%;
+                        padding: 0.2rem;
+                        box-sizing: content-box;
+                        height: 3vh;
+                        margin-bottom: 0.5rem;
+                    }
+                    #prepTimeInfo {
+                        color: #FA2525;
+                        background-color: #FA252578;
+                    }
+                    #cookTimeInfo {
+                        color: darken($color: #E9BA1352, $amount: 40%);
+                        background-color: #E9BA1352;
+                    }
+                    #restTimeInfo {
+                        color: #1F9C42;
+                        background-color: lighten($color: #1F9C42, $amount: 50%);
+                    }
+                }
+            }
+        }
+    }
+    
+    #homepageBottom {
+        width: 80%;
+        height: 70vh;
+        flex-direction: row;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: double 4px  #68B0AB;
+        
+        margin-bottom: 3rem;
+        #aboutMeContainer {
+            width: 50%;
+            height: 80%;
+            justify-content: space-evenly;
+            border-right: 4px double #68B0AB;
+            padding-bottom: 1rem;
+            .ctaButton {
+                width: 50%;
+               
+            }
+            
+        }
+        #servicesContainer {
+            width: 50%;
+            height: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            .serviceContainer {
+                background-color: #3E5378;
+                width: 80%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 1rem;
+                border-radius: 15px;
+                padding: 0.5rem;
+                border-right: inset 4px #68B0AB;
+                border-bottom: inset 4px #68B0AB;
+                p, h4 {
+                    color: white;
+                    
+                }
+                h4 {
+                    margin-top: 0rem;
+                }
+            }
+
         }
     }
 }
