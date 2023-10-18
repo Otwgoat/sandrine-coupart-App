@@ -4,60 +4,118 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 2rem;
-    #discoverReviews {
-        padding-top: 1rem;
-        margin-bottom: 1rem;
-        width: 90%;
-        color: #68B0AB;
+    
         
+    #recipeHeader {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 0.5rem;
+        p {
+            color: #68B0AB;
+        }
         
+        #discoverReviews {
+            padding-top: 1rem;
+            margin-bottom: 1rem;
+            width: 90%;
+            text-decoration: underline;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        
+
+
     }
+    
     img {
         height: 50vh;
         width: 100%;
         background-color: #3E5378;
         margin-bottom: 1rem;
-        border: solid 1px #68B0AB;
+        border: double 3px #68B0AB;
     }
     #recipeDescription {
         width: 90%;
         
     }
+    #preparationSquare {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-bottom: 1rem;
+        
+
+        #preparationItems {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 0.5rem;
+            #prepTimeInfo , #cookTimeInfo , #restTimeInfo {
+                border-radius: 5px;
+                padding: 0.2rem;
+                width: 80%;
+                height: 3vh;
+                margin-top: 0.5rem;
+                
+            }
+            #prepTimeInfo {
+                color: #FA2525;
+                background-color: #FA252578;
+            }
+            #cookTimeInfo {
+                color: darken($color: #E9BA1352, $amount: 40%);
+                background-color: #E9BA1352;
+            }
+            #restTimeInfo {
+                color: #1F9C42;
+                background-color: lighten($color: #1F9C42, $amount: 50%);
+            }
+
+        }
+
+    }
     .recipeSquare {
-        width: 100%;
+        width: 80%;
         display: flex;
         justify-content: center;
         
         .recipeItem {
             display: flex;
-            width: 40%;
-            margin: 1rem;
+            width: 100%;
+            margin-top: 1rem;
             flex-direction: column;
             align-items: center;
-            border: solid #68B0AB 1px;
-            border-radius: 15px;
-            padding: 1rem;
-            
         }
-        
+        p {
+            width: 100%;
+        }
         #stepList p {
             margin-bottom: 0.5rem;
 
         }
        
         .recipeItemTitle {
-            margin: 0.5rem 0.5rem;
+            align-self: flex-start;
+            width: 100%;
             color: #68B0AB;
+            border-bottom: double 2px #68B0AB;
         }
 
     }
-    #secondSquare, #thirdSquare {
-       .recipeItem {
-        width: 80%;
-       }
-       
-       
+    #firstSquare {
+        display: flex;
+        flex-direction: column;
+        .recipeItem {
+            width: 100%;
+        }
     }
+
+    
     .reviewsContainer {
         width: 100%;
         display: flex;
@@ -71,24 +129,20 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            
-            
+            #textAreaLabel {
+                margin-bottom: 0.5rem;
+            }
             textarea {
                 width: 100%;
                 height: 10vh;
                 margin-bottom: 0.5rem;
                 border: solid #68B0AB 1px;
                 border-radius: 10px;
-
                 &::placeholder {
                     font-family: 'Playfair Display', serif;
-                    padding-top: 0.5rem;
                     text-align: left;
-                    
                 }
             }
-                
-            
         }
         .reviewSquare {
             width: 80%;
@@ -99,31 +153,234 @@
             .reviewHeader {
                 width: 100%;
                 display: flex;
-                align-items: center;
-                justify-content: space-between;
-                h3 {
-                    width: 80%;
-                    #reviewCreatedAt {
-                        color: #68B0AB;
-                        font-size: 16px;
-                        margin-left: 0.5rem;
-                    }
+                align-items: flex-start;
+                flex-direction: column;
+                margin-bottom: 1rem;
+                #reviewUser {
+                   width: 100%;
+                   margin-bottom: 0;
                 }
-               
+                #reviewCreatedAt {
+                    width: 100%;
+                    color: #68B0AB;
+                    text-align: left;
 
-                #reviewRate{
-                    width: 20%;
-                    display:flex;
-                    justify-content: flex-end;
                 }
                 
             }
-            #review {
+            .review {
                 width: 100%;
+                
             }
             
             
         }
     }
     
+}
+/*Styles for larger screen on a recipe page. See RecipePage.jsx for more */
+/************************************************************************/
+@media screen and (min-width: 800px){
+    
+    #recipePage {
+        margin-top: 2vh;
+        padding-bottom: 2vh;
+        width: 70%;
+        border-radius: 5px;
+        box-shadow: 10px 0 10px rgba(0, 0, 0, 0.2), -10px 0 10px rgba(0, 0, 0, 0.2);
+        #recipeHeader {
+            width: 70vh;
+            margin-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            #recipeRateMissing {
+                text-align: left;
+            }
+            #reviewsMissing {
+                text-align: right;
+            }
+            
+        }
+        img {
+            height: 70vh;
+            width: 70vh;
+            margin-top: 0.5rem;
+            border: double 4px #68B0AB;
+        }
+        
+        #recipeDescription {
+            width: 70vh;
+            
+        }
+       .recipeSquare {
+        margin-top: 2rem;
+        width: 70vh;
+        display: flex;
+        justify-content: space-between;
+        
+        .recipeItemTitle {
+            margin: 0 0;
+            width: 100%;
+            padding-bottom: 1vh;
+            border-bottom: double 2px #68B0AB;
+        }
+        .recipeItem {
+            margin: 0;
+            border: none;
+            padding: 0;
+            align-items: flex-start;
+            
+            p {
+                margin-top: 1rem;
+                text-align: justify;
+                
+            }
+        }
+       }
+        #preparationSquare {
+            width: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            
+
+            #preparationItems {
+                box-sizing: content-box;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                margin-top: 1rem;
+                #prepTimeInfo , #cookTimeInfo , #restTimeInfo {
+                    border-radius: 5px;
+                    padding: 0.2rem;
+                    width: 25%;
+                    height: 3vh;
+                    margin-bottom: 0.5rem;
+                    margin-top: 1rem;
+                    
+                }
+            }
+
+        }
+        #firstSquare {
+            flex-direction: row;
+            .recipeItem {
+                width: 45%;
+            }
+        }
+        #secondSquare, #thirdSquare {
+            .recipeItem {
+                width: 100%;
+            }
+        }
+        #secondSquare  {
+            #ingredientsList {
+                width: 70%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                
+                .ingredientCheckbox {
+                    margin-top: 1rem;
+                    width: 45%;
+                    display: flex;
+                    justify-content: flex-start;
+                    
+                    label {
+                        box-sizing: content-box;
+                        text-align: justify;
+                        flex: 2;
+                    }
+                    input {
+                        flex: 1;
+                        width: 1rem;
+                        height: 1rem;
+                        text-align: justify;
+                    }
+                }
+            }
+        }
+        #thirdSquare {
+            .recipeItem {
+                padding-bottom: 2rem;
+                p {
+                    margin-top: 0.5rem;
+                }
+            }
+        }
+        button {
+            width: 40vh;
+            transition: background-color ease-in-out 0.5s;
+            &:hover {
+                background-color: #3E5378;
+            }
+        }
+
+        .reviewsContainer{
+            width: 70vh;
+            .formActive {
+                width: 100%;
+                align-items: flex-start;
+                #rateGroup {
+                    margin-bottom: 1rem;
+                }
+                label {
+                    text-align: left;
+                }
+                select {
+                    border: 1px solid #68B0AB;
+                    border-radius: 5px;
+                    color: #68B0AB;
+                }
+                textarea {
+                    
+                    
+                    color: #3E5378;
+                    font-family: 'Playfair Display', serif;
+                    padding: 0.5rem;
+                    text-align: left;
+                    
+                }
+                .centerButton {
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                }
+               
+
+
+            }
+            .reviewSquare {
+                width: 100%;
+                min-height: 10vh;
+                border-bottom: double 2px #68B0AB;
+                margin-top: 2rem;
+                .reviewHeader {
+                    width: 90%;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    h3 {
+                        margin-top: 0;
+                        flex: 3;
+                        
+                    }
+                    p{
+                        flex: 1;
+                    }
+                }
+                .review {
+                    width: 90%;
+                    text-align: justify;
+                    padding-bottom: 1rem;
+                    
+
+                }
+            }
+        }
+        
+    }
+    .unAuthenticated {
+        padding-top: 3rem;
+    }
 }

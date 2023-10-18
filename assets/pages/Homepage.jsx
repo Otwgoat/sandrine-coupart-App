@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "../components/Header";
 import Metadescription from "../components/Metadescription";
 import topImage from "../../src/images/recipe1.png";
@@ -10,13 +10,18 @@ import { useMediaQuery } from "react-responsive";
 import RecipeCardLarge from "../components/largerScreen/RecipeCardLarge";
 
 const Homepage = () => {
+  // === Responsive === //
   const isDesktop = useMediaQuery({
     query: "(min-width: 1000px)",
   });
   const isTablet = useMediaQuery({
     query: "(min-width: 400px)",
   });
+  // ============================== //
+  // === Get recipes rates and create a useState with the best rates. Then, display it on Homepage === //
   const [recipes, setRecipes] = useState();
+  const [filteredRecipes, setFilteredRecipes] = useState([]);
+  const [counter, setCounter] = useState(0);
   const [recipe, setRecipe] = useState();
   const [recipesLoaded, setRecipesLoaded] = useState(false);
   const getAverageRate = (recipe) => {
@@ -31,23 +36,12 @@ const Homepage = () => {
   };
   const compareRecipes = (recipes) => {
     if (recipesLoaded) {
-      const filteredRecipes = recipes.filter(
-        (recipe) =>
-          getAverageRate(recipe) >= 3.5 && recipe.requireAuth === false
+      setFilteredRecipes(
+        recipes.filter(
+          (recipe) =>
+            getAverageRate(recipe) >= 3.5 && recipe.requireAuth === false
+        )
       );
-      console.log(filteredRecipes);
-      if (filteredRecipes.length > 1) {
-        let i =
-          Math.floor(Math.random() * (filteredRecipes.length - 0 + 1)) + 0;
-        console.log(i);
-        if (i > filteredRecipes.length - 1) {
-          setRecipe(filteredRecipes[0]);
-        } else {
-          setRecipe(filteredRecipes[i]);
-        }
-      } else {
-        setRecipe(filteredRecipes);
-      }
     }
   };
   useEffect(() => {
@@ -56,12 +50,22 @@ const Homepage = () => {
   }, [recipesLoaded]);
 
   useEffect(() => {
+    if (filteredRecipes.length > 0) {
+      const randomCounter = Math.floor(Math.random() * filteredRecipes.length);
+      setCounter(randomCounter);
+      setRecipe(filteredRecipes[counter]);
+    }
+  }, [filteredRecipes, counter]);
+  // === Get recipes from database === //
+  // ================================= //
+  useEffect(() => {
     recipesApi.findAllRecipes(11).then((recipes) => {
       console.log(recipes);
       setRecipes(recipes);
       setRecipesLoaded(true);
     });
   }, []);
+  // === JSX Return === //
   return (
     <div className="container">
       <Metadescription
@@ -89,78 +93,84 @@ const Homepage = () => {
           </div>
         </div>
         <div className="homePageSection" id="dailyRecipeContainer">
-          <h2 id="dailyRecipeTitle">Une de vos recettes préférées</h2>
-          {isDesktop
-            ? recipe && (
-                <RecipeCardLarge
-                  key={recipe.id}
-                  id={recipe.id}
-                  title={recipe.title}
-                  description={recipe.description}
-                  allergens={recipe.allergens}
-                  review={getAverageRate(recipe)}
-                  prepTime={recipe.prepTime}
-                  cookTime={recipe.cookTime}
-                  restTime={recipe.restTime}
-                  imageUrl={recipe.imageUrl}
-                  requireAuth={recipe.requireAuth}
-                />
-              )
-            : recipe && (
-                <RecipeCard
-                  key={recipe.id}
-                  id={recipe.id}
-                  title={recipe.title}
-                  description={recipe.description}
-                  allergens={recipe.allergens}
-                  review={getAverageRate(recipe)}
-                  prepTime={recipe.prepTime}
-                  cookTime={recipe.cookTime}
-                  restTime={recipe.restTime}
-                  imageUrl={recipe.imageUrl}
-                  requireAuth={recipe.requireAuth}
-                />
-              )}
-
-          {!isDesktop && <span className="underLine"></span>}
+          <h2 id="dailyRecipeTitle">Vos recettes préférées</h2>
+          <div className="recipesList">
+            {isDesktop
+              ? filteredRecipes &&
+                filteredRecipes.map((recipe) => (
+                  <RecipeCardLarge
+                    key={recipe.id}
+                    id={recipe.id}
+                    title={recipe.title}
+                    description={recipe.description}
+                    allergens={recipe.allergens}
+                    review={getAverageRate(recipe)}
+                    prepTime={recipe.prepTime}
+                    cookTime={recipe.cookTime}
+                    restTime={recipe.restTime}
+                    imageUrl={recipe.imageUrl}
+                    requireAuth={recipe.requireAuth}
+                  />
+                ))
+              : recipe && (
+                  <RecipeCard
+                    key={recipe.id}
+                    id={recipe.id}
+                    title={recipe.title}
+                    description={recipe.description}
+                    allergens={recipe.allergens}
+                    review={getAverageRate(recipe)}
+                    prepTime={recipe.prepTime}
+                    cookTime={recipe.cookTime}
+                    restTime={recipe.restTime}
+                    imageUrl={recipe.imageUrl}
+                    requireAuth={recipe.requireAuth}
+                  />
+                )}
+          </div>
         </div>
         <div className="homePageSection" id="homepageBottom">
           <div id="aboutMeContainer">
             <h2>À propos</h2>
-            <p>
-              Diplomée d’état, je vous accompagne depuis plus de 10 ans, dans de
-              le but de vous apporter les solutions les moins restrictives
-              possibles mais tout aussi importantes pour votre santé. Je
-              consulte sur rendez-vous dans mon cabinet, à Caen, ou par
-              visio-conférence, et nous déterminons ensemble la meilleure
-              approche à adopter pour votre bien-être.
-            </p>
-            <Button path="/contact" title="Prendre rendez-vous" />
+            <div id="containerBody">
+              <p>
+                Diplomée d’état, je vous accompagne depuis plus de 10 ans, dans
+                de le but de vous apporter les solutions les moins restrictives
+                possibles mais tout aussi importantes pour votre santé. Je
+                consulte sur rendez-vous dans mon cabinet, à Caen, ou par
+                visio-conférence, et nous déterminons ensemble la meilleure
+                approche à adopter pour votre bien-être.
+              </p>
+              <Button path="/contact" title="Prendre rendez-vous" />
+            </div>
+
             {!isDesktop && <span className="underLine"></span>}
           </div>
           <div id="servicesContainer">
             <h2>Mes services</h2>
-            <div className="serviceContainer">
-              <h4>Consultation</h4>
-              <p>Sur rendez-vous , au cabinet ou par visio.</p>
+            <div id="containers">
+              <div className="serviceContainer">
+                <h4>Consultation</h4>
+                <p>Sur rendez-vous , au cabinet ou par visio.</p>
+              </div>
+              <div className="serviceContainer">
+                <h4>Suivi long terme</h4>
+                <p>
+                  Pour des raisons personelles ou pour des raisons de santé, je
+                  vous accompagne aussi longtemps qu’il le faut.
+                </p>
+              </div>
+              <div className="serviceContainer">
+                <h4>Atelier de prévention</h4>
+                <p>
+                  J’anime des ateliers en groupe, de prévention et d’information
+                  sur la nutrition.
+                </p>
+              </div>
             </div>
-            <div className="serviceContainer">
-              <h4>Suivi long terme</h4>
-              <p>
-                Pour des raisons personelles ou pour des raisons de santé, je
-                vous accompagne aussi longtemps qu’il le faut.
-              </p>
-            </div>
-            <div className="serviceContainer">
-              <h4>Atelier de prévention</h4>
-              <p>
-                J’anime des ateliers en groupe, de prévention et d’information
-                sur la nutrition.
-              </p>
-            </div>
+
             {!isDesktop && <span className="underLine"></span>}
           </div>
-          <span className="underline"></span>
         </div>
       </main>
       <Footer />

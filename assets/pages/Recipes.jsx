@@ -7,8 +7,11 @@ import Metadescription from "../components/Metadescription";
 import authAPI from "../services/authAPI";
 import jwtDecode from "jwt-decode";
 import usersApi from "../services/usersApi";
-import Footer from "../components/Footer";
 
+import Footer from "../components/Footer";
+// ====================================================================== //
+// Responsive for recipes page is made on recipes.scss with css media-queries //
+//========================================================================//
 const Recipes = () => {
   const [recipes, setRecipes] = useState();
   const [recipesLoaded, setRecipesLoaded] = useState(false);
@@ -32,7 +35,7 @@ const Recipes = () => {
     }
   };
   //=== === //
-  /*  === Get user diets and recipes and compare them, to only display corresponding recipes === */
+  //  === Get user diets and recipes and compare them, to only display corresponding recipes === //
   const loadRecipes = async () => {
     await recipesApi.findAllRecipes(11).then((recipes) => {
       setRecipes(recipes);
@@ -105,7 +108,7 @@ const Recipes = () => {
           <div className="mainBanner">
             <h3 id="mainTitle">
               Bonjour {userFirstname}, voici des recettes adaptées à votre
-              régime "{userDiets}".
+              régime {userDiets}.
             </h3>
 
             <p id="mainIntro">

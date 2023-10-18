@@ -27,8 +27,12 @@ main {
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 100%;
+            width: 80%;
             margin-top: 1rem;
+            h2 {
+                margin-top: 1rem;
+            }
+            
 
 
             
@@ -50,6 +54,7 @@ main {
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-top: 3rem;
 
 
         #recipeCard {
@@ -58,11 +63,13 @@ main {
             flex-direction: column;
             align-items: center;
 
+
             #recipeHeader {
                 width: 100%;
                 display: flex;
                 justify-content: space-between;
             }
+           
         }
 
 
@@ -71,42 +78,71 @@ main {
         display: flex;
         flex-direction: column;
         align-items: center;
-    }
-    #aboutMeContainer {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        .ctaButton {
-            margin-top: 1rem;
+        width: 100%;
+        h2 {
+            margin-top: 0;
         }
-    }
-    #servicesContainer {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-evenly;
-        width: 90%;
-        .serviceContainer {
-            background-color: #3E5378;
-            width: 100%;
+        #aboutMeContainer {
+            width: 90%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 1rem;
-            border-radius: 15px;
-            padding: 0.5rem;
-            p, h4 {
-                color: white;
-                
+            #containerBody {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                p {
+                    margin-bottom: 1rem;
+                }
+
             }
-            h4 {
-                margin-top: 0rem;
+            
+           
+            
+            
+        }
+        #servicesContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            width: 90%;
+            #containers {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .serviceContainer {
+                    background-color: #3E5378;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    margin-bottom: 1rem;
+                    border-radius: 15px;
+                    padding: 0.5rem;
+                    border-right: inset 4px #68B0AB;
+                    border-bottom: inset 4px #68B0AB;
+                    h4 {
+                        font-size: 20px;
+                    }
+                    p, h4 {
+                        color: white;
+
+    
+                    }
+                    h4 {
+                        margin-top: 0rem;
+                    }
+                }
             }
+            
         }
     }
 }
-/* Styles for larger screen with react-responsive. See isDesktop const on homepage jsx page */
-/*******************************************************************************************/
+/* Styles for larger screen with react-responsive. See isDesktop const on homepage jsx page for more */
+/****************************************************************************************************/
 .homepageLarge {
     margin-top: 2vh;
     
@@ -141,145 +177,236 @@ main {
 
             .ctaButton {
                 width: 60%;
+                transition: background-color ease-in-out 0.5s;
+                &:hover {
+                    background-color: #3E5378;
+                }
                
             }
         }
        
     }
     #dailyRecipeContainer {
-        width: 100%;
+
+        margin-top: 10vh;
+        width: 80%;
         display: flex;
-        .recipeCardLarge {
-            width: 80%;
-            height: 60vh;
+        flex-direction: column;
+        height: 80vh;
+        overflow-x: hidden;
+        position: relative;
+        
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -15px;
+            width: 10px; /* Largeur de l'ombre blanche */
+            height: 100%;
+            box-shadow: 19px 0px 10px 15px white;
+            pointer-events: none; /* Ignorer les événements de souris */
+            z-index: 20;
+          }
+          &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: -15px;
+            width: 10px; /* Largeur de l'ombre blanche */
+            height: 100%;
+            box-shadow: -19px 0px 10px 15px white;
+            pointer-events: none; /* Ignorer les événements de souris */
+            z-index: 20;
+          }
+        
+        
+        .recipesList {
+            height: 80%;
+            width: 100%;
             display: flex;
-            flex-direction: row;
-            border: 4px double #68B0AB;
+            align-items: center;
+            flex: 0 0 auto;
+            overflow-x: scroll;
+            scroll-behavior: smooth;
+            scroll-snap-align: center;
+            padding-right: 10%;
+           
             
             
-            .recipeCardLeft {
-                width: 50%;
-                height: 100%;
+            
+            
+            .recipeCardLarge {
+                min-width: 70%;
+                height: 60vh;
                 display: flex;
-                flex-direction: column;
-                align-items: center;
-                .recipeImg {
-                    background-color: #3E5378;
-                    width: 100%;
-                    height: 100%;
-                }
-            }
-            .recipeCardRight {
-                width: 50%;
-                display: flex;
-                align-items: center;
-                flex-direction: column;
-                justify-content: space-between;
-                padding: 1rem 0;
-                border-left: 4px double #68B0AB;
-               
-                .ctaButton {
+                flex-direction: row;
+                
+                
+                .recipeCardLeft {
                     width: 50%;
-                   
-                }
-                .recipeHeader {
-                    width: 80%;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-evenly;
-                    .recipeTitle {
-                        width: 80%;
-                    }
-                    .recipeReview {
-                        width: 20%;
-                        display: flex;
-                        align-items: center;
-                        justify-content: flex-end;
-                    }
-                }
-                .recipeDescription {
-                    text-align: center;
-                    display: flex;
-                    justify-content: center;
-                }
-                .recipeBody {
-                    width: 100%;
+                    height: 100%;
                     display: flex;
                     flex-direction: column;
+                    align-items: end;
+                    justify-content: center;
+                    .recipeImg {
+                        background-color: #3E5378;
+                        margin-right: -5vw;
+                        width: 20vw;
+                        height: 20vw;
+                        image-rendering: auto;
+                        border-radius: 50%;
+                        border: 4px double #68B0AB;
+                        z-index: 10;
+                    } 
+                }
+                .recipeCardRight {
+                    
+                    border: #68B0AB double 4px;
+                    width: 50%;
+                    display: flex;
                     align-items: center;
-                    box-sizing: content-box;
-                    #prepTimeInfo , #cookTimeInfo , #restTimeInfo {
-                        border-radius: 5px;
-                        width: 50%;
-                        padding: 0.2rem;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    padding: 1rem 0;
+                    
+                   .ctaButton {
+                        width: 30%;
+                       
+                    }
+                    .recipeHeader {
+                        width: 60%;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-evenly;
+                        .recipeTitle {
+                            width: 80%;
+                        }
+                        .recipeReview {
+                            width: 10%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: flex-end;
+                        }
+                    }
+                    .recipeDescription {
+                        width: 70%;
+                        text-align: center;
+                        display: flex;
+                        justify-content: center;
+                    }
+                    .recipeBody {
+                        width: 70%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
                         box-sizing: content-box;
-                        height: 3vh;
-                        margin-bottom: 0.5rem;
-                    }
-                    #prepTimeInfo {
-                        color: #FA2525;
-                        background-color: #FA252578;
-                    }
-                    #cookTimeInfo {
-                        color: darken($color: #E9BA1352, $amount: 40%);
-                        background-color: #E9BA1352;
-                    }
-                    #restTimeInfo {
-                        color: #1F9C42;
-                        background-color: lighten($color: #1F9C42, $amount: 50%);
+                        #prepTimeInfo , #cookTimeInfo , #restTimeInfo {
+                            border-radius: 5px;
+                            width: 50%;
+                            padding: 0.2rem;
+                            box-sizing: content-box;
+                            height: 3vh;
+                            margin-bottom: 0.5rem;
+                        }
+                        #prepTimeInfo {
+                            color: #FA2525;
+                            background-color: #FA252578;
+                        }
+                        #cookTimeInfo {
+                            color: darken($color: #E9BA1352, $amount: 40%);
+                            background-color: #E9BA1352;
+                        }
+                        #restTimeInfo {
+                            color: #1F9C42;
+                            background-color: lighten($color: #1F9C42, $amount: 50%);
+                        }
                     }
                 }
             }
+
         }
+        
     }
     
     #homepageBottom {
         width: 80%;
-        height: 70vh;
+        height: 80vh;
         flex-direction: row;
         display: flex;
         align-items: center;
-        justify-content: center;
-        border: double 4px  #68B0AB;
-        
+        justify-content: space-between;
         margin-bottom: 3rem;
+        h2 {
+            margin: 0;
+        }
         #aboutMeContainer {
-            width: 50%;
+            width: 45%;
             height: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             justify-content: space-evenly;
-            border-right: 4px double #68B0AB;
-            padding-bottom: 1rem;
+            border: 4px double #68B0AB;
+            box-shadow: 10px 0 10px rgba(0, 0, 0, 0.2), -10px 0 10px rgba(0, 0, 0, 0.2);
+            
+            
+            #containerBody {
+                width: 80%;
+                height: 80%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-evenly;
+                
+            }
             .ctaButton {
                 width: 50%;
+                transition: background-color ease-in-out 0.5s;
+                &:hover {
+                    background-color: #3E5378;
+                }
                
             }
             
         }
         #servicesContainer {
-            width: 50%;
+            width: 45%;
             height: 80%;
             display: flex;
-            flex-direction: column;
             justify-content: space-evenly;
-            .serviceContainer {
-                background-color: #3E5378;
+            border: 4px double #68B0AB;
+            box-shadow: 10px 0 10px rgba(0, 0, 0, 0.2), -10px 0 10px rgba(0, 0, 0, 0.2);
+            
+            #containers {
                 width: 80%;
+                height: 80%;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                margin-bottom: 1rem;
-                border-radius: 15px;
-                padding: 0.5rem;
-                border-right: inset 4px #68B0AB;
-                border-bottom: inset 4px #68B0AB;
-                p, h4 {
-                    color: white;
-                    
+                .serviceContainer {
+                    background-color: #3E5378;
+                    width: 100%;
+                    height: 30%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    margin-bottom: 1rem;
+                    border-radius: 15px;
+                    padding: 0.5rem;
+                    border-right: inset 4px #68B0AB;
+                    border-bottom: inset 4px #68B0AB;
+                    p, h4 {
+                        color: white;
+                        
+                    }
+                    h4 {
+                        margin-top: 0rem;
+                    }
                 }
-                h4 {
-                    margin-top: 0rem;
-                }
+
             }
+           
 
         }
     }

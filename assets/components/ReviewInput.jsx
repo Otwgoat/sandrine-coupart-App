@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import reviewsApi from "../services/reviewsApi";
-
+// === CSS styles for this form can be found on recipe.scss === //
+// =========================================================== //
 const ReviewInput = ({ isVisible, recipeId, userId, updateLastReview }) => {
   const formRef = useRef(formRef);
   const [recipe, setRecipe] = useState(recipeId);
@@ -69,7 +70,9 @@ const ReviewInput = ({ isVisible, recipeId, userId, updateLastReview }) => {
         {errors.rate && <p className="errorMessage">{errors.rate}</p>}
       </div>
 
-      <label htmlFor="review">Votre avis: </label>
+      <label id="textAreaLabel" htmlFor="review">
+        Votre avis:{" "}
+      </label>
       <textarea
         onChange={(e) => setReview(e.target.value)}
         name="review"
@@ -77,9 +80,11 @@ const ReviewInput = ({ isVisible, recipeId, userId, updateLastReview }) => {
         placeholder="Ecrivez votre avis..."
       ></textarea>
       {errors.review && <p className="errorMessage">{errors.review}</p>}
-      <button className="ctaButton" type="submit">
-        Envoyer
-      </button>
+      <div className="centerButton">
+        <button className="ctaButton" type="submit">
+          Envoyer
+        </button>
+      </div>
     </form>
   );
 };

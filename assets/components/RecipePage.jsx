@@ -1,13 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 const RecipePage = ({ recipe }) => {
+  // === Responsive === //
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 1000px)",
+  });
+  const isTablet = useMediaQuery({
+    query: "(min-width: 400px)",
+  });
+  // ============================== And css media queries on recipe.scss//
+
   return (
     <>
-      <div id="recipeHeader"></div>
       <img src={recipe.imageUrl} />
       <p id="recipeDescription">{recipe.description}</p>
-
+      <div id="preparationSquare" className="recipeSquare">
+        <h3 className="recipeItemTitle">Préparation</h3>
+        <div id="preparationItems">
+          <p id="prepTimeInfo">Préparation: {recipe.prepTime} min</p>
+          <p id="cookTimeInfo">Cuisson: {recipe.cookTime} min</p>
+          <p id="restTimeInfo">Repos: {recipe.restTime} min</p>
+        </div>
+      </div>
       <div id="firstSquare" className="recipeSquare">
         <div className="recipeItem">
           <h3 className="recipeItemTitle">Allergène(s)</h3>
@@ -23,11 +39,16 @@ const RecipePage = ({ recipe }) => {
         </div>
       </div>
       <div id="secondSquare" className="recipeSquare">
-        <div className="recipeItem" id="ingredientList">
+        <div className="recipeItem">
           <h3 className="recipeItemTitle">Ingrédients</h3>
-          {recipe.ingredients.map((ingredient, index) => (
-            <p key={index}>{ingredient}</p>
-          ))}
+          <div id="ingredientsList">
+            {recipe.ingredients.map((ingredient, index) => (
+              <div key={index} className="ingredientCheckbox">
+                <label htmlFor="ingredient">{ingredient}</label>
+                <input type="checkbox" name="ingredient" id={index}></input>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       <div className="recipeSquare" id="thirdSquare">

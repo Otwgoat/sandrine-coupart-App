@@ -10,16 +10,25 @@ import RecipePage from "../components/RecipePage";
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
+import { useMediaQuery } from "react-responsive";
 
 const Recipe = () => {
+  // === Responsive === //
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 1000px)",
+  });
+  const isTablet = useMediaQuery({
+    query: "(min-width: 400px)",
+  });
+  // ============================== And css media queries on recipe.scss//
   const reviewsContainer = useRef(reviewsContainer);
   const [publicRecipe, setPublicRecipe] = useState();
   const [recipe, setRecipe] = useState();
   const [reviewsVisible, setReviewsVisible] = useState(false);
   const [user, setUser] = useState();
   const [averageRate, setAverageRate] = useState();
-
   const [reviews, setReviews] = useState();
+
   const [isVisible, setIsVisible] = useState(false);
   const toggleForm = () => {
     setIsVisible(!isVisible);
@@ -104,13 +113,26 @@ const Recipe = () => {
       />
       {recipe && isAuthenticated ? (
         <main id="recipePage">
-          <p
-            onClick={() => reviewsOnClick()}
-            id="discoverReviews"
-            to="/recettes"
-          >
-            Voir les {reviews && reviews.length} avis
-          </p>
+          <div id="recipeHeader">
+            {averageRate ? (
+              <p id="recipeRate">{averageRate}/5</p>
+            ) : (
+              <p id="recipeRateMissing">Aucune note</p>
+            )}
+
+            {reviews && reviews.length > 0 ? (
+              <p
+                onClick={() => reviewsOnClick()}
+                id="discoverReviews"
+                to="/recettes"
+              >
+                Voir les {reviews && reviews.length} avis
+              </p>
+            ) : (
+              <p id="reviewsMissing">Aucun avis</p>
+            )}
+          </div>
+
           <RecipePage
             recipe={recipe}
             averageRate={averageRate ? averageRate : ""}
@@ -130,29 +152,42 @@ const Recipe = () => {
             {reviews &&
               reviewsVisible &&
               reviews.map((review, index) => (
-                <div key={index} className="reviewSquare">
+                <div
+                  key={index}
+                  className={
+                    index % 2 === 0
+                      ? "reviewSquare reviewPair"
+                      : "reviewSquare reviewImpair"
+                  }
+                >
                   <div className="reviewHeader">
                     <h3 id="reviewUser">
-                      {review.user.firstName}{" "}
-                      <span id="reviewCreatedAt">
-                        le{" "}
-                        {review.createdAt
-                          ? formatDate(review.createdAt)
-                          : formatDate(Date())}
-                      </span>
+                      {review.user.firstName} a noté la recette {review.rate} /
+                      5
                     </h3>
-                    <p id="reviewRate">{review.rate} / 5</p>
+                    <p id="reviewCreatedAt">
+                      le{" "}
+                      {review.createdAt
+                        ? formatDate(review.createdAt)
+                        : formatDate(Date())}
+                    </p>
                   </div>
-
-                  <p id="review">{review.review}</p>
+                  <p className="review">{review.review}</p>
                   <span className="underLine"></span>
                 </div>
               ))}
           </div>
         </main>
       ) : recipe && !isAuthenticated && publicRecipe ? (
-        <main id="recipePage">
-          <RecipePage recipe={recipe} averageRate={averageRate} />
+        <main
+          className={isAuthenticated ? "" : "unAuthenticated"}
+          id="recipePage"
+        >
+          <RecipePage
+            recipe={recipe}
+            averageRate={averageRate}
+            isAuthenticated={isAuthenticated}
+          />
           <Button path="/recettes" title="Revenir aux recettes" />
         </main>
       ) : (
