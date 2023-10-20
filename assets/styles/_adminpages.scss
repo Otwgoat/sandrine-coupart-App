@@ -1,6 +1,6 @@
 .adminMain {
-    max-width: 390px;
-    min-height: 100%;
+    width: 90%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -49,7 +49,7 @@
             align-items: center;
 
             .ctaButton {
-                width: 100%;
+                width: 70%;
             }
             #deleteButton {
                 background-color: #fa2525d6 ;

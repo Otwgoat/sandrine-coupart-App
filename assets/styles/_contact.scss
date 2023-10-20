@@ -20,7 +20,7 @@
             border-radius: 10px;
             height: 3vh;
             width: 100%;
-            text-align: center;
+            text-align: left;
             color: #3E5378;
             font-family: 'Playfair Display', serif;
             &::placeholder {
@@ -78,7 +78,8 @@
             border-radius: 10px;
             height: 5vh;
             width: 80%;
-            text-align: center;
+            text-align: left;
+            padding-left: 1rem;
             }
             textarea {
             border-radius: 10px;

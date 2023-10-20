@@ -11,21 +11,21 @@ const Footer = () => {
   return (
     <div id="footerContainer">
       <div id="socialContainer">
-        <a href="#" className="menuIcon">
+        <a href="https://www.facebook.com" className="menuIcon">
           <FontAwesomeIcon
             className="icon"
             icon={faFacebookF}
             style={{ color: "#68B0AB" }}
           />
         </a>
-        <a href="#" className="menuIcon">
+        <a href="https://www.instagram.com" className="menuIcon">
           <FontAwesomeIcon
             className="icon"
             icon={faInstagram}
             style={{ color: "#68B0AB" }}
           />
         </a>
-        <a href="#" className="menuIcon">
+        <a href="https://accounts.google.com" className="menuIcon">
           <FontAwesomeIcon
             className="icon"
             icon={faGooglePlusG}

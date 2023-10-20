@@ -138,7 +138,11 @@ const Recipe = () => {
             averageRate={averageRate ? averageRate : ""}
             onClick={() => reviewsOnClick()}
           />
-          <Button path="/recettes" title="Revenir aux recettes" />
+          <Button
+            id="prevButton"
+            path="/recettes"
+            title="Revenir aux recettes"
+          />
           <button onClick={toggleForm} className="ctaButton">
             Donner mon avis
           </button>
@@ -188,7 +192,11 @@ const Recipe = () => {
             averageRate={averageRate}
             isAuthenticated={isAuthenticated}
           />
-          <Button path="/recettes" title="Revenir aux recettes" />
+          <Button
+            id="prevButton"
+            path="/recettes"
+            title="Revenir aux recettes"
+          />
         </main>
       ) : (
         <main id="recipePage">
@@ -197,7 +205,11 @@ const Recipe = () => {
             patient. N'hesitez pas à me contacter ou à prendre rendez-vous si
             vous souhaitez plus d'information.
           </p>
-          <Button path="/recettes" title="Revenir aux recettes" />
+          <Button
+            id="prevButton"
+            path="/recettes"
+            title="Revenir aux recettes"
+          />
           <Button path="/contact" title="Me contacter" />
         </main>
       )}

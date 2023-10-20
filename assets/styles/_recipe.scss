@@ -176,11 +176,14 @@
             
         }
     }
+    #prevButton {
+        margin-top: 2rem;
+    }
     
 }
 /*Styles for larger screen on a recipe page. See RecipePage.jsx for more */
 /************************************************************************/
-@media screen and (min-width: 800px){
+@media screen and (min-width: 1000px){
     
     #recipePage {
         margin-top: 2vh;
@@ -253,7 +256,7 @@
                 #prepTimeInfo , #cookTimeInfo , #restTimeInfo {
                     border-radius: 5px;
                     padding: 0.2rem;
-                    width: 25%;
+                    width: 30%;
                     height: 3vh;
                     margin-bottom: 0.5rem;
                     margin-top: 1rem;
@@ -275,7 +278,213 @@
         }
         #secondSquare  {
             #ingredientsList {
-                width: 70%;
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                
+                .ingredientCheckbox {
+                    margin-top: 1rem;
+                    width: 45%;
+                    display: flex;
+                    justify-content: flex-start;
+                    
+                    label {
+                        box-sizing: content-box;
+                        text-align: justify;
+                        flex: 2;
+                    }
+                    input {
+                        flex: 1;
+                        width: 1rem;
+                        height: 1rem;
+                        text-align: justify;
+                    }
+                }
+            }
+        }
+        #thirdSquare {
+            .recipeItem {
+                padding-bottom: 2rem;
+                p {
+                    margin-top: 0.5rem;
+                }
+            }
+        }
+        button {
+            width: 40vh;
+            transition: background-color ease-in-out 0.5s;
+            &:hover {
+                background-color: #3E5378;
+            }
+        }
+
+        .reviewsContainer{
+            width: 70vh;
+            .formActive {
+                width: 100%;
+                align-items: flex-start;
+                #rateGroup {
+                    margin-bottom: 1rem;
+                }
+                label {
+                    text-align: left;
+                }
+                select {
+                    border: 1px solid #68B0AB;
+                    border-radius: 5px;
+                    color: #68B0AB;
+                }
+                textarea {
+                    
+                    
+                    color: #3E5378;
+                    font-family: 'Playfair Display', serif;
+                    padding: 0.5rem;
+                    text-align: left;
+                    
+                }
+                .centerButton {
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                }
+               
+
+
+            }
+            .reviewSquare {
+                width: 100%;
+                min-height: 10vh;
+                border-bottom: double 2px #68B0AB;
+                margin-top: 2rem;
+                .reviewHeader {
+                    width: 90%;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    h3 {
+                        margin-top: 0;
+                        flex: 3;
+                        
+                    }
+                    p{
+                        flex: 1;
+                    }
+                }
+                .review {
+                    width: 90%;
+                    text-align: justify;
+                    padding-bottom: 1rem;
+                    
+
+                }
+            }
+        }
+        
+    }
+    .unAuthenticated {
+        padding-top: 3rem;
+    }
+}
+/******************************/
+/* Styles for tablet screens */
+/****************************/
+@media screen and (min-width: 600px) and (max-width: 999px) {
+    #recipePage {
+        margin-top: 2vh;
+        padding-bottom: 2vh;
+        width: 70%;
+        border-radius: 5px;
+        box-shadow: 10px 0 10px rgba(0, 0, 0, 0.2), -10px 0 10px rgba(0, 0, 0, 0.2);
+        #recipeHeader {
+            width: 70%;
+            margin-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            #recipeRateMissing {
+                text-align: left;
+            }
+            #reviewsMissing {
+                text-align: right;
+            }
+            
+        }
+        img {
+            height: 40vh;
+            width: 70%;
+            margin-top: 0.5rem;
+            border: double 4px #68B0AB;
+        }
+        
+        #recipeDescription {
+            width: 70%;
+            
+        }
+       .recipeSquare {
+        margin-top: 2rem;
+        width: 70%;
+        display: flex;
+        justify-content: space-between;
+        
+        .recipeItemTitle {
+            margin: 0 0;
+            width: 100%;
+            padding-bottom: 1vh;
+            border-bottom: double 2px #68B0AB;
+        }
+        .recipeItem {
+            margin: 0;
+            border: none;
+            padding: 0;
+            align-items: flex-start;
+            
+            p {
+                margin-top: 1rem;
+                text-align: justify;
+                
+            }
+        }
+       }
+        #preparationSquare {
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            
+
+            #preparationItems {
+                box-sizing: content-box;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                margin-top: 0.5rem;
+                #prepTimeInfo , #cookTimeInfo , #restTimeInfo {
+                    border-radius: 5px;
+                    padding: 0.2rem;
+                    width: 50%;
+                    height: 3vh;
+                    margin-bottom: 0.5rem;
+                    margin-top: 1rem;
+                    
+                }
+            }
+
+        }
+        #firstSquare {
+            flex-direction: row;
+            .recipeItem {
+                width: 45%;
+            }
+        }
+        #secondSquare, #thirdSquare {
+            .recipeItem {
+                width: 100%;
+            }
+        }
+        #secondSquare  {
+            #ingredientsList {
+                width: 100%;
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-between;

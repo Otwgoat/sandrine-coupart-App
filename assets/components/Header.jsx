@@ -113,19 +113,19 @@ const Header = (props) => {
               )}
             </div>
             <div className="menuIcons">
-              <a href="#" className="menuIcon">
+              <a href="https://www.facebook.com" className="menuIcon">
                 <FontAwesomeIcon
                   icon={faFacebookF}
                   style={{ color: "#ffffff" }}
                 />
               </a>
-              <a href="#" className="menuIcon">
+              <a href="https://www.instagram.com" className="menuIcon">
                 <FontAwesomeIcon
                   icon={faInstagram}
                   style={{ color: "#ffffff" }}
                 />
               </a>
-              <a href="#" className="menuIcon">
+              <a href="https://accounts.google.com" className="menuIcon">
                 <FontAwesomeIcon
                   icon={faGooglePlusG}
                   style={{ color: "#ffffff" }}

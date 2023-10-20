@@ -6,7 +6,6 @@ import RecipeCard from "../components/RecipeCard";
 import Metadescription from "../components/Metadescription";
 import authAPI from "../services/authAPI";
 import jwtDecode from "jwt-decode";
-import usersApi from "../services/usersApi";
 
 import Footer from "../components/Footer";
 // ====================================================================== //
@@ -103,6 +102,7 @@ const Recipes = () => {
         title="Sandrine Coupart - Mes recettes"
         description="Découvrez des recettes adaptées à votre régime alimentaire."
       />
+
       <main id="recipesPage">
         {isAuthenticated ? (
           <div className="mainBanner">
