@@ -155,12 +155,13 @@ header {
             text-align: center;
         }
     }
-}   
+}  
+
 .headerLarge {
     display: flex;
     justify-content: space-evenly;
     .pageTitle {
-        width: 25%;
+        width: 30%;
         margin: 0;
         h1 {
             margin-left: 2rem;
@@ -177,13 +178,13 @@ header {
             }
         }
     }
+
     .navMenuLarge {
         display: flex;
         justify-content: space-evenly;
-        width: 50%;
+        width: 40%;
 
         .menuLinkLarge, .menuLinkLargeActive {
-            
             text-align: center;
 
         }
@@ -192,28 +193,25 @@ header {
                 display: block;
                 content: ' ';
                 transition:  transform ease-in-out 0.5s;
-                border-bottom: 2px solid #68B0AB;
-
+                border-bottom: 3px solid #68B0AB;
             }
         }
         .menuLinkLarge {
-            
             &:after {
                 display: block;
                 content: ' ';
                 transform: scaleX(0) ;
                 transition:  transform ease-in-out 0.5s;
-                border-bottom: 2px solid #68B0AB;
+                border-bottom: 2px double #68B0AB;
             }
             &:hover:after {
                 transform: scaleX(1);
                 
             }
-            
         }
     }
     .menuAuth {
-        width: 25%;
+        width: 30%;
         height: 100%;
         display: flex;
         align-items: center;

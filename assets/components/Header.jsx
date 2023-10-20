@@ -27,7 +27,7 @@ const Header = (props) => {
   const toggleMenu = () => setIsOpen(!isOpen);
   const [startRedirect, setStartRedirect] = useState(false);
   const isDesktop = useMediaQuery({
-    query: "(min-width: 1000px)",
+    query: "(min-width: 600px)",
   });
   const isTablet = useMediaQuery({
     query: "(min-width: 400px)",

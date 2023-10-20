@@ -7,17 +7,14 @@ import RecipeCard from "../components/RecipeCard";
 import recipesApi from "../services/recipesApi";
 import Footer from "../components/Footer";
 import { useMediaQuery } from "react-responsive";
-import RecipeCardLarge from "../components/largerScreen/RecipeCardLarge";
 
 const Homepage = () => {
   // === Responsive === //
   const isDesktop = useMediaQuery({
-    query: "(min-width: 1000px)",
+    query: "(min-width: 1180px)",
   });
-  const isTablet = useMediaQuery({
-    query: "(min-width: 400px)",
-  });
-  // ============================== //
+  // === Responsive styles written on homepage.scss with css media queries === //
+  // ======================================================================== //
   // === Get recipes rates and create a useState with the best rates. Then, display it on Homepage === //
   const [recipes, setRecipes] = useState();
   const [filteredRecipes, setFilteredRecipes] = useState([]);
@@ -98,7 +95,7 @@ const Homepage = () => {
             {isDesktop
               ? filteredRecipes &&
                 filteredRecipes.map((recipe) => (
-                  <RecipeCardLarge
+                  <RecipeCard
                     key={recipe.id}
                     id={recipe.id}
                     title={recipe.title}
