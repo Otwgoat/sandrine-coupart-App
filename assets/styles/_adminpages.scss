@@ -248,13 +248,13 @@
 @media screen and (min-width: 700px){
     .adminMain {
         width: 90%;
-        #addRecipeBtn, #addUserBtn {
+        #addRecipeBtn, #addUserBtn{
             margin-bottom: 1rem;
-            width: 40%;
+            width: 520px;
         }
         .adminList {
             input {
-                width: 40%;
+                width: 520px;
             }
 
         }
@@ -266,6 +266,10 @@
                 }
             }
         }
+        .ctaButton {
+            width: 520px;
+        }
+        
         
 
     }
