@@ -245,3 +245,16 @@
         }
     }
 }
+@media screen and (min-width: 700px){
+    .adminMain {
+        #addRecipeBtn, #addUserBtn {
+            margin-bottom: 1rem;
+            width: 40%;
+        }
+        input {
+            width: 40%;
+        }
+
+    }
+            
+} 
