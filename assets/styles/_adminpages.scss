@@ -262,14 +262,20 @@
             width: 80%;
             .formGroup {
                 width: 60%;
-                .formItem {
-                    p {
-                        width: 466px;
+                .formList {
+                    .formItem {
+
+                        p {
+                            width: 466px;
+                        }
+                        
                     }
                 }
                 .handleAddButton {
                     width: 466px;
                 }
+               
+                
 
             }
             
