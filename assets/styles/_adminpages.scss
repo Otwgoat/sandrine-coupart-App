@@ -260,11 +260,19 @@
         }
         .formActive {
             width: 80%;
-            .formItem {
-                p {
-                    width: 40%;
+            .formGroup {
+                width: 60%;
+                .formItem {
+                    p {
+                        width: 466px;
+                    }
                 }
+                .handleAddButton {
+                    width: 466px;
+                }
+
             }
+            
         }
         .ctaButton {
             width: 520px;

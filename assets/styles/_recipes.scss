@@ -189,12 +189,13 @@
                 box-shadow: 10px 0 10px rgba(0, 0, 0, 0.2), -10px 0 10px rgba(0, 0, 0, 0.2);
             }
         }
+        span {
+            display: none;
+        }
 
     }
     
-    span {
-        display: none;
-    }
+    
     #recipesContainer {
         display: flex;
         min-height: 100vh;
