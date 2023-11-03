@@ -247,13 +247,26 @@
 }
 @media screen and (min-width: 700px){
     .adminMain {
+        width: 90%;
         #addRecipeBtn, #addUserBtn {
             margin-bottom: 1rem;
             width: 40%;
         }
-        input {
-            width: 40%;
+        .adminList {
+            input {
+                width: 40%;
+            }
+
         }
+        .formActive {
+            width: 80%;
+            .formItem {
+                p {
+                    width: 40%;
+                }
+            }
+        }
+        
 
     }
             
