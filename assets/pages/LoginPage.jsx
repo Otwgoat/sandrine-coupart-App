@@ -7,6 +7,7 @@ import Metadescription from "../components/Metadescription";
 import Footer from "../components/Footer";
 
 const LoginPage = () => {
+  const [forgotMessage, setForgotMessage] = useState(false);
   const navigate = useNavigate();
   const [error, setError] = useState(" ");
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
@@ -51,6 +52,9 @@ const LoginPage = () => {
       );
     }
   };
+  const forgotPasswordMessage = () => {
+    setForgotMessage(true);
+  };
 
   // === JSX RETURN ===
   return (
@@ -85,7 +89,18 @@ const LoginPage = () => {
           </div>
           {error && <p className="errorMessage">{error}</p>}
           <div className="form-group">
-            <a href="#">Mot de passe oublié</a>
+            <a href="#" onClick={forgotPasswordMessage}>
+              Mot de passe oublié
+            </a>
+            {forgotMessage ? (
+              <p>
+                Cette fonctionnalité n'est pas encore implémentée. En attendant
+                je vous invite à me contacter via le formulaire de contact et je
+                vous renverrai un mot de passe.
+              </p>
+            ) : (
+              ""
+            )}
             <button className="ctaButton" type="submit">
               Je me connecte
             </button>
