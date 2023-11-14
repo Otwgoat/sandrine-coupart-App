@@ -47,6 +47,8 @@ Le back-end du projet est construit grâce à symphony, tandis que le front a é
 
 <h3>Le déploiement en ligne se fera via la commande :</h3> 
 
+`$ npm run build`
+
 
 
 
