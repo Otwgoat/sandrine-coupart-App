@@ -43,11 +43,15 @@ Le back-end du projet est construit grâce à symphony, tandis que le front a é
 
  `$ npm run dev-server`
 
-<h2>Déploiement en ligne :</h2>
+ <h3>Une ligne de commande a été créée pour configurer un administrateur :</h3>
 
-<h3>Le déploiement en ligne se fera via la commande :</h3> 
+ `$ php bin/console app:create-admin <firstname> <lastname> <email> <password>`
 
-`$ npm run build`
+
+
+Les utilisateurs seront crées par l'administrateur et un mot de passe sera généré aléatoirement lors de la création.
+
+
 
 
 
